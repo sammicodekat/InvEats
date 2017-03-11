@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-const TextInputField = ({ label, placeholderText, changeHandler }) => (
+const TextAreaField = ({ label, placeholderText, changeHandler }) => (
   <div>
     {label}
     <div>
-      <input
+      <textarea
         onChange={changeHandler}
         placeholder={placeholderText}
         type="text"
@@ -15,4 +15,4 @@ const TextInputField = ({ label, placeholderText, changeHandler }) => (
   </div>
 );
 
-export default TextInputField;
+export default TextAreaField;
