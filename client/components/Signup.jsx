@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { googleLogin } from '../store/actions/authActions';
 import {submitInfotoFirebase} from '../store/actions/demoAction';
+import { Grid, Button, Icon } from 'semantic-ui-react'
 import Role from '../signup/Role';
 
-export class Signup extends Component {
+export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       role: {"Investor":false, "Project Owner":false },
-      step: 0,
+      step: 1,
       location:'',
       industry: {"Healthcare":false, "FinTech":false, "Consumer":false, "Digital Media":false, "Ecommerce":false, "SaaS":false},
       round: {"Idea":false, "Seed":false, "Series A":false, "Series B":false, "After":false },
@@ -55,19 +56,37 @@ export class Signup extends Component {
 
   render() {
     const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
-    const display = '';
+    let display = '';
     switch(step){
     case 1 : display=(<Role selectRole={this.selectRole} role={role} />)
     }
 
     return (
-      <div>
-        {display}
-      </div>
+  <Grid verticalAlign='middle' centered>
+    <Grid.Row>
+      <Grid.Column floated='left' width={2}>
+        <Button animated color="blue">
+          <Button.Content visible>Prev</Button.Content>
+          <Button.Content hidden>
+            <Icon name='left arrow' />
+          </Button.Content>
+        </Button>
+      </Grid.Column>
+      <Grid.Column>{display}</Grid.Column>
+      <Grid.Column floated='right' width={2}>
+        <Button animated color="blue">
+          <Button.Content visible>Next</Button.Content>
+          <Button.Content hidden>
+            <Icon name='right arrow' />
+          </Button.Content>
+        </Button>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
     );
   }
 }
 
-export default connect(({demoReducer}) => {
-  return ({myProp: demoReducer.myProp});
-}, {updateMyProp})(Signup);
+// export default connect(({ demoReducer }) => {
+//   return ({myProp: demoReducer.myProp});
+// }, {submitInfotoFirebase})(Signup);
