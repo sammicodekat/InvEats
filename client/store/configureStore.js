@@ -14,6 +14,7 @@ function configureStore(initialState) {
       applyMiddleware(
         reduxThunk,
       ),
+      window.devToolsExtension? window.devToolsExtension() : f => f,
     ),
   );
 
