@@ -8,7 +8,7 @@ class Test extends React.Component {
   render() {
     return (
       <div>
-        this is a test component {this.props.awesome}
+        {this.props.awesome}
       </div>
     );
   }
