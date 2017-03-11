@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateMyProp } from '../store/actions/demoAction';
+import { updateMyProp } from '../store/actions/demo/demoAction';
 
 export class Test extends React.Component {
   constructor(props) {
@@ -29,7 +29,6 @@ export class Test extends React.Component {
     return (
       <div>
         this is a test component {this.props.myProp}
-        <input type="text" value={this.state.text} onChange={this.updateNameState} ></input>
         <button onClick={this.submitName}>Submit</button>
       </div>
     );
@@ -39,10 +38,10 @@ export class Test extends React.Component {
 export default connect(
   ({ demoReducer }) => {
     return ({
-      myProp: demoReducer.myProp
+      myProp: demoReducer.myProp,
     });
   },
   {
-    updateMyProp
-  }
+    updateMyProp,
+  },
 )(Test);
