@@ -28,10 +28,12 @@ export class Test extends React.Component {
 
 
   render() {
+    const { updateMyProp } = this.props;
     return (
       <div>
         this is a test component {this.props.myProp}
         <button onClick={this.submitName}>Submit</button>
+        <Button clickHandler={updateMyProp} />
       </div>
     );
   }
