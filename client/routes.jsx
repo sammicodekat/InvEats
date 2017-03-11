@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-
 import Layout from './components/Layout.jsx';
 import LoginForm from './components/LoginForm';
 import Setup from './components/Setup';
