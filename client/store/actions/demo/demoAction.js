@@ -1,6 +1,6 @@
 import {
   DEMO_ACTION,
-} from './actionTypes';
+} from './demoActionTypes';
 
 export function updateMyProp(name) {
   return {

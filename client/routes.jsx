@@ -1,19 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Layout from './components/Layout.jsx';
-import LoginForm from './components/LoginForm';
-import Setup from './components/Setup';
-
-export default (
-  <Route path="/" component={Layout}>
-    <IndexRoute component={Layout} />
-    <Route path="login" component={LoginForm} />
-    <Route path="setup" component={Setup} />
-  </Route>
-);
-
-
-// import Layout from './components/Layout';
+import Layout from './components/Layout';
+import Test from './components/TestComponent';
 // import Home from './components/Home'
 // import Profile from './components/Profile'
 // import SignUp from './components/SignUP'
@@ -28,24 +16,25 @@ export default (
 // import Time from './components/Time'
 // import Location from './components/Location'
 // import Confirmation from './components/Confirmation'
-// export default (
-//     <Route path="/" component={Layout}>
-//       <IndexRoute component={Home} />
-//       <Route path="profile/:id" component={Profile} />
-//       <Route path="signup" component={Signup} >
-//         <Route path="/role" component={Role} />
-//         <Route path="/round" component={Round} />
-//         <Route path="/range" component={Range} />
-//         <Route path="/industry" component={Industry} />
-//         <Route path="/availablity" component={Availablity} />
-//         <Route path="/cuisine" component={Cuisine} />
-//         <Route path="/company" component={Company} />
-//       </Route>
-//       <Route path="login" component={Login} />
-//       <Route path="matches" component={Matches} >
-//         <Route path="time" component={Time} />
-//         <Route path="location" component={Location} />
-//         <Route path="confirmation" component={Confirmation} />
-//       </Route>
-//     </Route>
-// =======
+
+export default (
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Test} />
+      {/*<Route path="profile/:id" component={Profile} />
+      <Route path="signup" component={Signup} >
+        <Route path="/role" component={Role} />
+        <Route path="/round" component={Round} />
+        <Route path="/range" component={Range} />
+        <Route path="/industry" component={Industry} />
+        <Route path="/availablity" component={Availablity} />
+        <Route path="/cuisine" component={Cuisine} />
+        <Route path="/company" component={Company} />
+      </Route>
+      <Route path="login" component={Login} />
+      <Route path="matches" component={Matches} >
+        <Route path="time" component={Time} />
+        <Route path="location" component={Location} />
+        <Route path="confirmation" component={Confirmation} />
+      </Route>*/}
+    </Route>
+);

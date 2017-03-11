@@ -1,6 +1,6 @@
 import {
   DEMO_ACTION,
-} from '../actions/actionTypes';
+} from '../actions/demo/demoActionTypes';
 
 const initialState = {
   myProp: 'zack',
