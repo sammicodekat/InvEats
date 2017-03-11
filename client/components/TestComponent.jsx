@@ -24,6 +24,7 @@ export class Test extends React.Component {
     this.props.updateMyProp(this.state.text);
   }
 
+
   render() {
     return (
       <div>
