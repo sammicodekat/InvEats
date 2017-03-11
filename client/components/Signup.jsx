@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { googleLogin } from '../store/actions/authActions';
 import {updateMyProp} from '../store/actions/demoAction';
-import Role from './Role';
+import Role from '../signup/Role';
 
 export class Signup extends Component {
   constructor(props) {
@@ -56,11 +56,10 @@ export class Signup extends Component {
 
   render() {
     const { role, step } = this.state;
-    const display = '';
+    let display = '';
     switch(step){
     case 1 : display=(<Role selectRole={this.selectRole} role={role} />)
     }
-
 
     return (
       <div>
