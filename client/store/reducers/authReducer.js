@@ -1,4 +1,8 @@
-import { GOOGLE_LOGIN, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_ERROR } from '../actions/actionTypes';
+import {
+  GOOGLE_LOGIN,
+  GOOGLE_LOGIN_SUCCESS,
+  GOOGLE_LOGIN_ERROR,
+} from '../actions/auth/authActionTypes';
 
 const INITIAL_STATE = {
   isAuth: false,
