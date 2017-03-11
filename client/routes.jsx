@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import Layout from './components/Layout';
-import Test from './components/TestComponent';
+import Layout from './components/Layout.jsx';
+import LoginForm from './components/LoginForm';
+import Setup from './components/Setup';
 
 export default (
   <Route path="/" component={Layout}>
-    <IndexRoute component={Test} />
-    {/*Uncomment this stuff once we have Profile */}
-    {/*<Route path="profile/:id" component={Profile} />*/}
+    <IndexRoute component={Layout} />
+    <Route path="login" component={LoginForm} />
+    <Route path="setup" component={Setup} />
   </Route>
 );

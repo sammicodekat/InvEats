@@ -1,36 +1,20 @@
 // class Component of LoginForm
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import firebase from 'firebase';
-import axios from 'axios';
-
+import { googleLogin } from '../store/actions/authActions';
 
 class LoginForm extends Component {
-
-  componentDidMount() {
-
+  loginWithGoogle(e) {
+    e.preventDefault();
+    this.props.googleLogin()
   }
 
-  loginGoogle(e) {
-    e.preventDefault();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      console.log('USER', user, token)
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      console.log('error', error)
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuth) {
+      this.props.router.push('/setup');
+      console.log('isAuth?', this.props)
+    }
   }
 
   render() {
@@ -38,38 +22,19 @@ class LoginForm extends Component {
       <div>
         <div>
           <h1> Login </h1>
-          <button onClick={(e) => this.loginGoogle(e)}>Login with Google</button>
+          <button onClick={(e) => this.loginWithGoogle(e)}>
+            Login with Google
+          </button>
         </div>
       </div>
     );
   }
 }
 
-export default LoginForm;
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth,
+  };
+};
 
-// export const googleLogin = () => (dispatch) => {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   firebase.auth().signInWithPopup(provider).then(function(result) {
-//     var token = result.credential.accessToken;
-//     var user = result.user;
-//     console.log('USER', user, token)
-//     // ...
-//   }).catch(function(error) {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     var email = error.email;
-//     var credential = error.credential;
-//   });
-// }
-
-// <form onSubmit={this.loginGoogle}>
-//   <div className="form-group">
-//     <label>Email</label>
-//     <input className="form-control" ref={(email) => this.email = email} placeholder="Email"/>
-//   </div>
-//   <div className="form-group">
-//     <label>Password</label>
-//     <input type="password" className="form-control" placeholder="Password" ref={(pw) => this.pw = pw} />
-//   </div>
-//   <button type="submit" className="btn btn-primary">Login</button>
-// </form>
+export default connect(mapStateToProps, { googleLogin })(LoginForm);
