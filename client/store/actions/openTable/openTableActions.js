@@ -1,5 +1,6 @@
 import {
   GET_LISTINGS,
+  GET_LISTING,
   SET_LISTINGS,
 } from './openTableActionTypes';
 import axios from 'axios';
@@ -7,7 +8,7 @@ import axios from 'axios';
 export function getListings() {
   return (dispatch) => {
     dispatch({ type: GET_LISTINGS });
-    axios.get({
+    axios({
       url: 'https://platform.opentable.com/sync/listings',
       method: 'GET',
       headers: {
@@ -15,8 +16,8 @@ export function getListings() {
       },
     })
       .then((data) => {
-        console.log('Got OpenTable Listings:', data);
-        dispatch({ type: SET_LISTINGS, data });
+        console.log('Got OpenTable Listings:', data.items);
+        dispatch({ type: SET_LISTINGS, payload: data.items });
       })
       .catch((err) => {
         console.log('Get request errored out', err);
@@ -24,7 +25,6 @@ export function getListings() {
   };
 }
 
-export function getListing() {
+export function getListing(id) {
+  return { type: GET_LISTING, id };
 }
-
-getListings();

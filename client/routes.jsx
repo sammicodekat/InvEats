@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Layout from './components/Layout';
-import Test from './components/TestComponent';
+import ListingsContainer from './containers/ListingsContainer';
+// import Test from './components/TestComponent';
 // import Home from './components/Home'
 // import Profile from './components/Profile'
 // import SignUp from './components/SignUP'
@@ -19,7 +20,7 @@ import Test from './components/TestComponent';
 
 export default (
     <Route path="/" component={Layout}>
-      <IndexRoute component={Test} />
+      <IndexRoute component={ListingsContainer} />
       {/*<Route path="profile/:id" component={Profile} />
       <Route path="signup" component={Signup} >
         <Route path="/role" component={Role} />
