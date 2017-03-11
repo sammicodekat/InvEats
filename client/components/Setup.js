@@ -9,7 +9,6 @@ class Setup extends Component {
       <div>
         <div>
           <h1> Setup Container </h1>
-          </>
         </div>
       </div>
     );
