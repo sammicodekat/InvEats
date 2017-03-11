@@ -9,6 +9,8 @@ import routes from './routes';
 
 const store = configureStore({});
 
+// import LoginForm from './components/LoginForm.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
