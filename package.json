@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node web-server/server.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "lint": "eslint ./client",
