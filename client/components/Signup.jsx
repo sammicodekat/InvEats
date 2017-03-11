@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { googleLogin } from '../store/actions/authActions';
-import {updateMyProp} from '../store/actions/demoAction';
+import {submitInfotoFirebase} from '../store/actions/demoAction';
 import Role from '../signup/Role';
 
 export class Signup extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       role: {"Investor":false, "Project Owner":false },
       step: 0,
@@ -55,8 +54,8 @@ export class Signup extends Component {
   }
 
   render() {
-    const { role, step } = this.state;
-    let display = '';
+    const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
+    const display = '';
     switch(step){
     case 1 : display=(<Role selectRole={this.selectRole} role={role} />)
     }
