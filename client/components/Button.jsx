@@ -8,14 +8,15 @@ export default class SemanticButton extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.props.clickHandler();
+  handleClick(e) {
+    this.props.clickHandler(e);
   }
 
   render() {
+    const { name, checked } = this.props;
     return (
-      <Button onClick={this.handleClick}>
-        Click Here
+      <Button onClick={this.handleClick} name={name} checked={checked}>
+        {name}
       </Button>
     );
   }
