@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { browserHistory } from 'react-router'
-import TestComponent from './TestComponent'
-// import { Dropdown } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react'
 
 
 const trigger = (
   <span>
     <i className="fa fa-user" aria-hidden="true" />
   </span>
-)
+);
 
 class Layout extends React.Component {
   render() {
