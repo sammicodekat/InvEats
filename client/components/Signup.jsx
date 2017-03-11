@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { googleLogin } from '../store/actions/authActions';
-import {submitInfotoFirebase} from '../store/actions/demoAction';
+import { googleLogin } from '../store/actions/auth/authActions';
+import {submitInfotoFirebase} from '../store/actions/demo/demoAction';
 import { Grid, Button, Icon } from 'semantic-ui-react'
 import Role from '../signup/Role';
 

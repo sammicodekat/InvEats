@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import { googleLogin } from '../store/actions/authActions';
+import { googleLogin } from '../store/actions/auth/authActions';
 
 class LoginForm extends Component {
   loginWithGoogle(e) {
