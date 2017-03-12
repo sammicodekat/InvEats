@@ -46,35 +46,6 @@ const INITIAL_STATE = {
     '$500k-$1M': false,
     '>$1M': false,
   },
-  cuisine: {
-    Mexican: false,
-    Thai: false,
-    American: false,
-    Italian: false,
-    Japanese: false,
-  },
-  schedule: {
-    Monday: {
-      Lunch: false,
-      Dinner: false,
-    },
-    Tuesday: {
-      Lunch: false,
-      Dinner: false,
-    },
-    Wednesday: {
-      Lunch: false,
-      Dinner: false,
-    },
-    Thursday: {
-      Lunch: false,
-      Dinner: false,
-    },
-    Friday: {
-      Lunch: false,
-      Dinner: false,
-    },
-  },
   product: {
     Title: '',
     Description: '',
