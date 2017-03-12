@@ -146,19 +146,44 @@ class Signup extends Component {
     );
     switch (step) {
       case 1 :
-        display = (<SignUpRole className="signup" clickHandler={this.handleClickRole} options={role} />);
+        display = (
+          <div>
+            <h1>Select Your Role</h1>
+            <SignUpRole className="signup" clickHandler={this.handleClickRole} options={role} />
+          </div>
+        );
         break;
       case 2 :
-        display = (<SignUpLocation className="signup" changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />);
+        display = (
+          <div>
+            <h1>Select Your Location</h1>
+            <SignUpLocation className="signup" changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />
+          </div>
+        );
         break;
       case 3 :
-        display = (<SignUpRound className="signup" clickHandler={this.handleClickRound} options={round} />);
+        display = (
+          <div>
+            <h1>Select Your Funding Stage</h1>
+            <SignUpRound className="signup" clickHandler={this.handleClickRound} options={round} />
+          </div>
+        );
         break;
       case 4 :
-        display = (<SignUpRange className="signup" clickHandler={this.handleClickRange} options={range} />);
+        display = (
+          <div>
+            <h1>Select Your Funding Range</h1>
+            <SignUpRange className="signup" clickHandler={this.handleClickRange} options={range} />
+          </div>
+        );
         break;
       case 5 :
-        display = (<SignUpIndustry className="signup" clickHandler={this.handleClickIndustry} options={industry} />);
+        display = (
+          <div>
+            <h1>Select Your Industry</h1>
+            <SignUpIndustry className="signup" clickHandler={this.handleClickIndustry} options={industry} />
+          </div>
+        );
         if (role.Investor === true) {
           rightButton = (
             <Button animated color="green" onClick={this.submit} className="fluid ui button big">
@@ -172,14 +197,17 @@ class Signup extends Component {
         break;
       case 6 :
         display = (
-          <SignUpProduct
-            changeTitleHandler={this.handleChangeProductTitle}
-            changeDescriptionHandler={this.handleChangeProductDescription}
-            titlePlaceholderText={'Enter your product name'}
-            descriptionPlaceholderText={'Enter your product description'}
-            titleValue={product.Title}
-            descriptionValue={product.Description}
-          />
+          <div>
+            <h1>Tell Us About Your Product</h1>
+            <SignUpProduct
+              changeTitleHandler={this.handleChangeProductTitle}
+              changeDescriptionHandler={this.handleChangeProductDescription}
+              titlePlaceholderText={'Enter your product name'}
+              descriptionPlaceholderText={'Enter your product description'}
+              titleValue={product.Title}
+              descriptionValue={product.Description}
+            />
+          </div>
         );
         rightButton = (
           <Button animated color="green" onClick={this.submit} className="fluid ui button big">
