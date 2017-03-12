@@ -7,8 +7,8 @@ provider:
 
 
 functions:
-  getListings:
-    handler: handler.getListings
+  get:
+    handler: listings/get.get
     events:
       - http:
           path: listings
