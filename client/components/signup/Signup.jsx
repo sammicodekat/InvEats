@@ -197,7 +197,7 @@ class Signup extends Component {
     return (
       <div style={{ width: '70%', margin: '0 auto' }}>
         <Grid>
-          <Progress percent={step / 7} color="blue" progress active>Progress</Progress>
+          <Progress className="fluid ui progress" width={step / 7} percent={step / 7} color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
