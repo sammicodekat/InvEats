@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { savePreferences, getPreferences } from '../store/actions/firebase/firebaseActions';
 
-class Home extends Component {
+class Investor extends Component {
   render() {
     return (
-        <div>Homeeeee</div>
+        <div>
+          <h1> Investor Container </h1>
+        </div>
     );
   }
 }
@@ -16,4 +18,4 @@ const mapStateToProps = ({ auth }) => {
   };
 };
 
-export default connect(mapStateToProps, { getPreferences })(Home);
+export default connect(mapStateToProps, { getPreferences })(Investor);

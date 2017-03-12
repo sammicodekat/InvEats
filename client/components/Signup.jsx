@@ -12,7 +12,6 @@ import SignUpAvailability from './SignUpAvailability';
 import SignUpCuisine from './SignUpCuisine';
 import SignUpProduct from './SignUpProduct';
 
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -92,12 +91,14 @@ class Signup extends Component {
   }
 
   handleChangeLocation(e) {
+    console.log('handleChangeLocation clicked', e.target.value);
     this.setState({
       location: e.target.value,
     });
   }
 
   handleClickRound(e) {
+    console.log('handleClickRound clicked', e.target.name);
     const { round } = this.state;
     const newState = {
       ...round,
@@ -110,6 +111,7 @@ class Signup extends Component {
   }
 
   handleClickRange(e) {
+    console.log('handleClickRange clicked', e.target.name);
     const { range } = this.state;
     const newState = {
       ...range,
@@ -122,6 +124,7 @@ class Signup extends Component {
   }
 
   handleClickIndustry(e) {
+    console.log('handleClickIndustry clicked', e.target.name);
     const { range } = this.state;
     const newState = {
       ...range,
@@ -162,12 +165,14 @@ class Signup extends Component {
   }
 
   handleChangeProductTitle(e) {
+    console.log('handleChange clicked', this.state.product);
     this.setState({
       product: { ...this.state.product, title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
+    console.log('handleChange clicked', this.state.product);
     this.setState({
       product: { ...this.state.product, description: e.target.value },
     });
@@ -216,24 +221,24 @@ class Signup extends Component {
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
-            <Grid.Column floated="left" width={2}>
-              <Button animated color="blue" onClick={this.prevStep}>
-                <Button.Content visible>Prev</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="left arrow" />
-                </Button.Content>
-              </Button>
-            </Grid.Column>
-            <Grid.Column width={8}>{display}</Grid.Column>
-            <Grid.Column floated="right" width={2}>
-              <Button animated color="blue" onClick={this.nextStep}>
-                <Button.Content visible>Next</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="right arrow" />
-                </Button.Content>
-              </Button>
-            </Grid.Column>
-          </Grid.Row>
+        <Grid.Column floated="left" width={2}>
+          <Button animated color="blue" onClick={this.prevStep}>
+            <Button.Content visible>Prev</Button.Content>
+            <Button.Content hidden>
+              <Icon name="left arrow" />
+            </Button.Content>
+          </Button>
+        </Grid.Column>
+        <Grid.Column width={8}>{display}</Grid.Column>
+        <Grid.Column floated="right" width={2}>
+          <Button animated color="blue" onClick={this.nextStep}>
+            <Button.Content visible>Next</Button.Content>
+            <Button.Content hidden>
+              <Icon name="right arrow" />
+            </Button.Content>
+          </Button>
+        </Grid.Column>
+      </Grid.Row>
         </Grid>
       </div>
     );
