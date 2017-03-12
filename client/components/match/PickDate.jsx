@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {updateMyProp} from '../../store/actions/demo/demoAction';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateMyProp } from '../../store/actions/demo/demoAction';
 
 export class PickDate extends Component {
   constructor(props) {

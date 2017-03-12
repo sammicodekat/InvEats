@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonsGroup from '../Buttonsgroup';
+import ButtonsGroup from '../button/Buttonsgroup';
 
 
 const SignUpRange = ({ clickHandler, options }) => (

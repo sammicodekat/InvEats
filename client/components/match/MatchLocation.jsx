@@ -1,5 +1,6 @@
 import React from 'react';
-import MatchList from './MatchList.jsx';
+import MatchList from './MatchList';
+
 class MatchLocation extends React.Component {
   constructor(props) {
     super(props);

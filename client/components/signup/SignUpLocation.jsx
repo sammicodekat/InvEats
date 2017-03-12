@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInputField from '../TextInputField';
+import TextInputField from '../textarea/TextInputField';
 
 const SignUpLocation = ({ changeHandler, label, placeholderText, value }) => (
   <TextInputField
