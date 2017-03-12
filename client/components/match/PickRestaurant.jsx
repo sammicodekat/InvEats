@@ -17,7 +17,7 @@ export class PickRestaurant extends Component {
     this.nextResults = this.nextResults.bind(this);
     this.previousResults = this.previousResults.bind(this);
 
-    this.props.getListings('2017-03-15T20:00', this.props.location);
+    this.props.getListings('2017-03-15T20:00', this.props.location || 'San Francisco');
   }
 
   pickRestaurant(e) {
@@ -69,7 +69,7 @@ export default connect(
       listings: openTable.listings,
       loading: openTable.loading,
       selectedListing: openTable.selectedListing,
-      location: auth.location,
+      location: auth.preferences.location,
     };
   },
   {
