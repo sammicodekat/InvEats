@@ -1,15 +1,15 @@
 import React from 'react';
 
 
-const TextInputField = ({ label, placeholderText, changeHandler }) => (
+const TextInputField = ({ label, placeholderText, changeHandler, value }) => (
   <div>
-    {label}
     <div>
       <input
         onChange={changeHandler}
         placeholder={placeholderText}
         type="text"
         name={label}
+        value={value}
       />
     </div>
   </div>

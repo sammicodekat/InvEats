@@ -2,8 +2,8 @@ import React from 'react';
 import ButtonsGroup from './Buttonsgroup.jsx';
 
 
-const SignUpRound = ({ clickHanlder, options }) => (
-  <ButtonsGroup clickHandler={clickHanlder} options={options} />
+const SignUpRound = ({ clickHandler, options }) => (
+  <ButtonsGroup clickHandler={clickHandler} options={options} />
 );
 
 export default SignUpRound;

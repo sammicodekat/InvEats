@@ -2,17 +2,17 @@ import React from 'react';
 import TextInputField from './TextInputField.jsx';
 import TextAreaField from './TextAreaField.jsx';
 
-const SignUpProduct = ({ changeHandler, options }) => (
+const SignUpProduct = ({ changeTitleHandler, changeDescriptionHandler, titlePlaceholderText, descriptionPlaceholderText, options, descriptionValue, titleValue }) => (
   <div>
     <TextInputField
-      changeHandler={changeHandler}
-      label={options.label}
-      placeholderText={options.placeholderText}
+      changeHandler={changeTitleHandler}
+      placeholderText={titlePlaceholderText}
+      value={titleValue}
     />
     <TextAreaField
-      changeHandler={changeHandler}
-      label={options.label}
-      placeholderText={options.placeholderText}
+      changeHandler={changeDescriptionHandler}
+      placeholderText={descriptionPlaceholderText}
+      value={descriptionValue}
     />
   </div>
 );

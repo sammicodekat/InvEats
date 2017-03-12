@@ -3,21 +3,23 @@ import Button from './Button.jsx';
 
 const SignUpAvailability = ({ clickHandler, options }) => (
   <table>
-    {options.keys().map(day => (
-      <tr>
-        <td>{day}</td>
-        {day.keys().map(meal => (
-          <td>
-            <Button
-              clickHandler={clickHandler}
-              name={`${day} ${meal}`}
-              checked={options[day][meal]}
-              label={meal}
-            />
-          </td>
-        ))}
-      </tr>
-    ))}
+    <tbody>
+      {Object.keys(options).map(day => (
+        <tr key={day}>
+          <td>{day}</td>
+          {Object.keys(options[day]).map(meal => (
+            <td key={`${day} ${meal}`}>
+              <Button
+                clickHandler={clickHandler}
+                name={`${day} ${meal}`}
+                checked={options[day][meal]}
+                label={meal}
+              />
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
   </table>
 );
 

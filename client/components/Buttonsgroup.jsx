@@ -4,12 +4,13 @@ import Button from './Button.jsx';
 
 const ButtonsGroup = ({ options, clickHandler }) => (
   <div>
-    {options.map(option =>
+    {Object.keys(options).map(name =>
       <Button
         clickHandler={clickHandler}
-        name={option.name}
-        checked={options[option.name]}
-        label={option.name}
+        name={name}
+        checked={options[name]}
+        label={name}
+        key={name}
       />)
     }
   </div>
