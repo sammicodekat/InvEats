@@ -54,9 +54,10 @@ class Signup extends Component {
 
   nextStep() {
     const { step } = this.state;
-    if (step === 8 || (this.state.role.investor && step === 5)) {
+    if (step === 6 || (this.state.role.Investor && step === 5)) {
       this.props.savePreferences(this.state)
       .then(() => this.props.router.push('/home'));
+      return;
     }
     this.setState({
       step: step + 1,
