@@ -197,13 +197,13 @@ class Signup extends Component {
     return (
       <div style={{ width: '70%', margin: '0 auto' }}>
         <Grid>
-          <Progress className="fluid ui progress" width={step / 7} percent={step / 7} color="blue" progress active>Progress</Progress>
+          {/*<Progress className="fluid ui progress" progress={progress} color="blue" active></Progress>*/}
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
             <Grid.Column width={16}>{display}</Grid.Column>
           </Grid.Row>
-          {this.state.step !== 1 &&
+          {step !== 1 &&
           <Grid.Row>
             <Grid.Column floated="left" style={{ width: '50%' }}>
               <Button animated color="blue" onClick={this.prevStep} className="fluid ui button big">
