@@ -72,7 +72,7 @@ export default class Signup extends Component {
           </Button.Content>
         </Button>
       </Grid.Column>
-      <Grid.Column>{display}</Grid.Column>
+      <Grid.Column width={8}>{display}</Grid.Column>
       <Grid.Column floated='right' width={2}>
         <Button animated color="blue">
           <Button.Content visible>Next</Button.Content>
