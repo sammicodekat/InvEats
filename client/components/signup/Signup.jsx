@@ -37,6 +37,7 @@ class Signup extends Component {
     this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   updateNameState(e) {
@@ -47,17 +48,13 @@ class Signup extends Component {
     this.props.updateMyProp(this.state.text);
   }
 
-  selectRole(e) {
-    this.setState({ role: e.target.value });
-    this.nextStep();
+  submit() {
+    this.props.savePreferences(this.state)
+    .then(() => this.props.router.push('/home'));
   }
 
   nextStep() {
     const { step } = this.state;
-    if (step === 8 || (this.state.role.investor && step === 5)) {
-      this.props.savePreferences(this.state)
-      .then(() => this.props.router.push('/home'));
-    }
     this.setState({
       step: step + 1,
     });
@@ -85,14 +82,12 @@ class Signup extends Component {
   }
 
   handleChangeLocation(e) {
-    console.log('handleChangeLocation clicked', e.target.value);
     this.setState({
       location: e.target.value,
     });
   }
 
   handleClickRound(e) {
-    console.log('handleClickRound clicked', e.target.name);
     const { round } = this.state;
     const newState = {
       ...round,
@@ -105,7 +100,6 @@ class Signup extends Component {
   }
 
   handleClickRange(e) {
-    console.log('handleClickRange clicked', e.target.name);
     const { range } = this.state;
     const newState = {
       ...range,
@@ -118,33 +112,16 @@ class Signup extends Component {
   }
 
   handleClickIndustry(e) {
-    console.log('handleClickIndustry clicked', e.target.name);
-    const { range } = this.state;
+    const { industry } = this.state;
     const newState = {
-      ...range,
+      ...industry,
       [e.target.name]: !this.state.range[e.target.name],
     };
 
     this.setState({
-      range: newState,
+      industry: newState,
     });
   }
-
-  // handleClickAvailability(e) {
-  //   const update = e.target.name.split(' ');
-
-  //   const { schedule } = this.state;
-  //   const newState = {
-  //     ...schedule,
-  //     [update[0]]: {
-  //       ...this.state.schedule[update[0]],
-  //       [update[1]]: !this.state.schedule[update[0]][update[1]],
-  //     },
-  //   };
-  //   this.setState({
-  //     schedule: newState,
-  //   });
-  // }
 
   handleClickCuisine(e) {
     const { cuisine } = this.state;
@@ -159,14 +136,12 @@ class Signup extends Component {
   }
 
   handleChangeProductTitle(e) {
-    console.log('handleChange clicked', this.state.product);
     this.setState({
       product: { ...this.state.product, title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
-    console.log('handleChange clicked', this.state.product);
     this.setState({
       product: { ...this.state.product, description: e.target.value },
     });
@@ -175,6 +150,13 @@ class Signup extends Component {
   render() {
     const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
     let display = '';
+    let button = (
+      <Button animated color="blue" onClick={this.nextStep}>
+        <Button.Content visible>Next</Button.Content>
+        <Button.Content hidden>
+          <Icon name="right arrow" />
+        </Button.Content>
+      </Button>);
     switch (step) {
       case 1 :
         display = (<SignUpRole clickHandler={this.handleClickRole} options={role} />);
@@ -190,6 +172,15 @@ class Signup extends Component {
         break;
       case 5 :
         display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
+        if(role.Investor==true){
+        button=(
+          <Button animated color="green" onClick={this.prevStep}>
+            <Button.Content visible>Submit</Button.Content>
+            <Button.Content hidden>
+              <Icon name="check" />
+            </Button.Content>
+          </Button>)
+        }
         break;
       case 6 :
         display = (<SignUpProduct
@@ -199,7 +190,14 @@ class Signup extends Component {
           descriptionPlaceholderText={'Enter your product description'}
           titleValue={product.title}
           descriptionValue={product.description}
-        />);
+                   />);
+        button=(
+          <Button animated color="green" onClick={this.prevStep}>
+            <Button.Content visible>Submit</Button.Content>
+            <Button.Content hidden>
+              <Icon name="check" />
+            </Button.Content>
+          </Button>);
         break;
     }
     return (
@@ -209,34 +207,24 @@ class Signup extends Component {
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
-        <Grid.Column floated="left" width={2}>
-          <Button animated color="blue" onClick={this.prevStep}>
-            <Button.Content visible>Prev</Button.Content>
-            <Button.Content hidden>
-              <Icon name="left arrow" />
-            </Button.Content>
-          </Button>
-        </Grid.Column>
-        <Grid.Column width={8}>{display}</Grid.Column>
-        <Grid.Column floated="right" width={2}>
-          <Button animated color="blue" onClick={this.nextStep}>
-            <Button.Content visible>Next</Button.Content>
-            <Button.Content hidden>
-              <Icon name="right arrow" />
-            </Button.Content>
-          </Button>
-        </Grid.Column>
-      </Grid.Row>
+            <Grid.Column floated="left" width={2}>
+              <Button animated color="blue" onClick={this.prevStep}>
+                <Button.Content visible>Prev</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="left arrow" />
+                </Button.Content>
+              </Button>
+            </Grid.Column>
+            <Grid.Column width={8}>{display}</Grid.Column>
+            <Grid.Column floated="right" width={2}>
+              {button}
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
       </div>
     );
   }
 }
-
-// export default connect(({ demoReducer }) => {
-//   return ({myProp: demoReducer.myProp});
-// }, {submitInfotoFirebase})(Signup);
-
 
 const mapStateToProps = ({ auth }) => ({
   auth,

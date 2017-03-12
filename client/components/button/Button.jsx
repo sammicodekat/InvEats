@@ -13,13 +13,13 @@ export default class SemanticButton extends Component {
   }
 
   render() {
-    const { name, checked, label } = this.props;
+    const { name, checked, label, clickHandler } = this.props;
+    const color = checked ? "red": "grey";
     return (
-      <Button onClick={this.handleClick} name={name} checked={checked}>
+      <Button onClick={this.handleClick} name={name} checked={checked} color={color}>
         {label}
       </Button>
     );
   }
 
 }
-
