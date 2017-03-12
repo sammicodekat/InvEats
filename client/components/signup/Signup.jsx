@@ -135,13 +135,13 @@ class Signup extends Component {
 
   handleChangeProductTitle(e) {
     this.setState({
-      product: { ...this.state.product, title: e.target.value },
+      product: { ...this.state.product, Title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
     this.setState({
-      product: { ...this.state.product, description: e.target.value },
+      product: { ...this.state.product, Description: e.target.value },
     });
   }
 
@@ -170,14 +170,14 @@ class Signup extends Component {
         break;
       case 5 :
         display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
-        if(role.Investor==true){
-        button=(
+        if (role.Investor == true) {
+          button = (
           <Button animated color="green" onClick={this.submit}>
             <Button.Content visible>Submit</Button.Content>
             <Button.Content hidden>
               <Icon name="check" />
             </Button.Content>
-          </Button>)
+          </Button>);
         }
         break;
       case 6 :
@@ -188,7 +188,7 @@ class Signup extends Component {
           descriptionPlaceholderText={'Enter your product description'}
           titleValue={product.title}
           descriptionValue={product.description}
-                   />);
+        />);
         button = (<Button animated color="green" onClick={this.nextStep}>
           <Button.Content visible>Submit</Button.Content>
           <Button.Content hidden>
@@ -200,7 +200,7 @@ class Signup extends Component {
     return (
       <div>
         <Grid>
-          <Progress percent={step / 7 } color="blue" progress active>Progress</Progress>
+          <Progress percent={step / 7} color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
@@ -216,7 +216,7 @@ class Signup extends Component {
             <Grid.Column floated="right" width={2}>
               {button}
             </Grid.Column>
-      </Grid.Row>
+          </Grid.Row>
         </Grid>
       </div>
     );
