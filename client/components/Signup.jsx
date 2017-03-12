@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { googleLogin } from '../store/actions/auth/authActions';
 import { submitInfotoFirebase } from '../store/actions/demo/demoAction';
 import { Grid, Button, Icon, Progress } from 'semantic-ui-react';
-import Role from '../signup/Role';
 import SignUpRole from './SignUpRole';
 import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
@@ -211,17 +210,17 @@ export default class Signup extends Component {
           changeDescriptionHandler={this.handleChangeProductDescription}
           titlePlaceholderText={'Enter your product name'}
           descriptionPlaceholderText={'Enter your product description'}
-          titleValue={this.state.product.title}
-          descriptionValue={this.state.product.description}
+          titleValue={product.title}
+          descriptionValue={product.description}
         />);
         break;
     }
     return (
       <div>
-    <Grid>
+        <Grid>
       <Progress percent={step / 6 * 20} color="blue" progress active>Progress</Progress>
     </Grid>
-    <Grid verticalAlign="middle" centered>
+        <Grid verticalAlign="middle" centered>
       <Grid.Row>
         <Grid.Column floated="left" width={2}>
           <Button animated color="blue" onClick={this.prevStep}>
@@ -242,7 +241,7 @@ export default class Signup extends Component {
         </Grid.Column>
       </Grid.Row>
     </Grid>
-  </div>
+      </div>
     );
   }
 }
