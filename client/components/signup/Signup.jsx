@@ -32,6 +32,7 @@ class Signup extends Component {
     this.handleClickRound = this.handleClickRound.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
     this.handleClickIndustry = this.handleClickIndustry.bind(this);
+    this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
     this.submit = this.submit.bind(this);
@@ -113,7 +114,7 @@ class Signup extends Component {
     const { industry } = this.state;
     const newState = {
       ...industry,
-      [e.target.name]: !this.state.industry[e.target.name],
+      [e.target.name]: !this.state.range[e.target.name],
     };
 
     this.setState({
@@ -121,69 +122,44 @@ class Signup extends Component {
     });
   }
 
-  handleClickAvailability(date) {
-    // const update = e.target.name.split(' ');
-
-    // const { schedule } = this.state;
-    // const newState = {
-    //   ...schedule,
-    //   [update[0]]: {
-    //     ...this.state.schedule[update[0]],
-    //     [update[1]]: !this.state.schedule[update[0]][update[1]],
-    //   },
-    // };
-    // this.setState({
-    //   schedule: newState,
-    // });
-
-    this.props.getListings(date, this.props.auth.preferences.location);
-  }
-
   handleChangeProductTitle(e) {
     this.setState({
-      product: { ...this.state.product, Title: e.target.value },
+      product: { ...this.state.product, title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
     this.setState({
-      product: { ...this.state.product, Description: e.target.value },
+      product: { ...this.state.product, description: e.target.value },
     });
   }
 
   render() {
-    const { role, step, location, industry, round, range, product } = this.state;
+    const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
     let display = '';
-    let button = (
-      <Button animated color="blue" onClick={this.nextStep}>
-        <Button.Content visible>Next</Button.Content>
-        <Button.Content hidden>
-          <Icon name="right arrow" />
-        </Button.Content>
-      </Button>);
     switch (step) {
       case 1 :
-        display = (<SignUpRole clickHandler={this.handleClickRole} options={role} />);
+        display = (<SignUpRole className="signup signup-role" clickHandler={this.handleClickRole} options={role} />);
         break;
       case 2 :
-        display = (<SignUpLocation changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />);
+        display = (<SignUpLocation className="signup signup-role" changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />);
         break;
       case 3 :
-        display = (<SignUpRound clickHandler={this.handleClickRound} options={round} />);
+        display = (<SignUpRound className="signup signup-role" clickHandler={this.handleClickRound} options={round} />);
         break;
       case 4 :
-        display = (<SignUpRange clickHandler={this.handleClickRange} options={range} />);
+        display = (<SignUpRange className="signup signup-role" clickHandler={this.handleClickRange} options={range} />);
         break;
       case 5 :
-        display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
-        if (role.Investor == true) {
-          button = (
-            <Button animated color="green" onClick={this.submit}>
-              <Button.Content visible>Submit</Button.Content>
-              <Button.Content hidden>
-                <Icon name="check" />
-              </Button.Content>
-            </Button>);
+        display = (<SignUpIndustry className="signup signup-role" clickHandler={this.handleClickIndustry} options={industry} />);
+        if(role.Investor==true){
+        button=(
+          <Button animated color="green" onClick={this.submit}>
+            <Button.Content visible>Submit</Button.Content>
+            <Button.Content hidden>
+              <Icon name="check" />
+            </Button.Content>
+          </Button>)
         }
         break;
       case 6 :
@@ -192,10 +168,10 @@ class Signup extends Component {
           changeDescriptionHandler={this.handleChangeProductDescription}
           titlePlaceholderText={'Enter your product name'}
           descriptionPlaceholderText={'Enter your product description'}
-          titleValue={product.Title}
-          descriptionValue={product.Description}
-        />);
-        button = (<Button animated color="green" onClick={this.submit}>
+          titleValue={product.title}
+          descriptionValue={product.description}
+                   />);
+        button = (<Button animated color="green" onClick={this.nextStep}>
           <Button.Content visible>Submit</Button.Content>
           <Button.Content hidden>
             <Icon name="check" />
@@ -204,23 +180,30 @@ class Signup extends Component {
         break;
     }
     return (
-      <div>
+      <div style={{width:"70%", "margin":"0 auto"}}>
         <Grid>
-          <Progress percent={step / 7} color="blue" progress active>Progress</Progress>
+          <Progress percent={step / 7 } color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
-            <Grid.Column floated="left" width={2}>
-              <Button animated color="blue" onClick={this.prevStep}>
+            <Grid.Column width={16}>{display}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column floated="left" width={4}>
+              <Button animated color="blue" onClick={this.prevStep} className="fluid ui button big">
                 <Button.Content visible>Prev</Button.Content>
                 <Button.Content hidden>
                   <Icon name="left arrow" />
                 </Button.Content>
               </Button>
             </Grid.Column>
-            <Grid.Column width={8}>{display}</Grid.Column>
-            <Grid.Column floated="right" width={2}>
-              {button}
+            <Grid.Column floated="right" width={4}>
+              <Button animated color="blue" onClick={this.nextStep} className="fluid ui button big">
+                <Button.Content visible>Next</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="right arrow" />
+                </Button.Content>
+              </Button>
             </Grid.Column>
           </Grid.Row>
         </Grid>
