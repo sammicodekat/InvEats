@@ -1,0 +1,16 @@
+service: unravelService
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+
+
+functions:
+  getListings:
+    handler: handler.getListings
+    events:
+      - http:
+          path: listings
+          method: get
+          cors: true
