@@ -8,7 +8,7 @@ const Navbar = (props) => {
         <Menu.Item>
           <img src="https://dl2.pushbulletusercontent.com/0YPG4XSoAY8Uee7xRVAgvw3Upkti6g81/logo.png" />
         </Menu.Item>
-        <Menu.Item header onClick={() => browserHistory.push('/')} >INVEAT</Menu.Item>
+        <Menu.Item header onClick={() => browserHistory.push('/')} >INVEATS</Menu.Item>
         <Menu.Item position='right' icon="user" onClick={props.toggleVisibility}></Menu.Item>
       </Menu>
     )
