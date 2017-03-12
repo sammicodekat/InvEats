@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { googleLogin } from '../store/actions/auth/authActions';
 import {submitInfotoFirebase} from '../store/actions/demo/demoAction';
-import { Grid, Button, Icon } from 'semantic-ui-react'
+import { Grid, Button, Icon, Progress } from 'semantic-ui-react'
 import Role from '../signup/Role';
 
 export default class Signup extends Component {
@@ -62,27 +62,32 @@ export default class Signup extends Component {
     }
 
     return (
-  <Grid verticalAlign='middle' centered>
-    <Grid.Row>
-      <Grid.Column floated='left' width={2}>
-        <Button animated color="blue">
-          <Button.Content visible>Prev</Button.Content>
-          <Button.Content hidden>
-            <Icon name='left arrow' />
-          </Button.Content>
-        </Button>
-      </Grid.Column>
-      <Grid.Column width={8}>{display}</Grid.Column>
-      <Grid.Column floated='right' width={2}>
-        <Button animated color="blue">
-          <Button.Content visible>Next</Button.Content>
-          <Button.Content hidden>
-            <Icon name='right arrow' />
-          </Button.Content>
-        </Button>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+  <div>
+    <Grid>
+      <Progress percent={step/6*20} color='blue' progress active>Progress</Progress>
+    </Grid>
+    <Grid verticalAlign='middle' centered>
+      <Grid.Row>
+        <Grid.Column floated='left' width={2}>
+          <Button animated color="blue">
+            <Button.Content visible>Prev</Button.Content>
+            <Button.Content hidden>
+              <Icon name='left arrow' />
+            </Button.Content>
+          </Button>
+        </Grid.Column>
+        <Grid.Column width={8}>{display}</Grid.Column>
+        <Grid.Column floated='right' width={2}>
+          <Button animated color="blue">
+            <Button.Content visible>Next</Button.Content>
+            <Button.Content hidden>
+              <Icon name='right arrow' />
+            </Button.Content>
+          </Button>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </div>
     );
   }
 }
