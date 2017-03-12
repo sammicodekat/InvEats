@@ -31,7 +31,6 @@ class Signup extends Component {
     this.handleClickRound = this.handleClickRound.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
     this.handleClickIndustry = this.handleClickIndustry.bind(this);
-    this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
     this.submit = this.submit.bind(this);
@@ -121,32 +120,21 @@ class Signup extends Component {
     });
   }
 
-  handleClickCuisine(e) {
-    const { cuisine } = this.state;
-    const newState = {
-      ...cuisine,
-      [e.target.name]: !this.state.cuisine[e.target.name],
-    };
-
-    this.setState({
-      cuisine: newState,
-    });
-  }
 
   handleChangeProductTitle(e) {
     this.setState({
-      product: { ...this.state.product, title: e.target.value },
+      product: { ...this.state.product, Title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
     this.setState({
-      product: { ...this.state.product, description: e.target.value },
+      product: { ...this.state.product, Description: e.target.value },
     });
   }
 
   render() {
-    const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
+    const { role, step, location, industry, round, range, product } = this.state;
     let display = '';
     let button = (
       <Button animated color="blue" onClick={this.nextStep}>
@@ -170,14 +158,14 @@ class Signup extends Component {
         break;
       case 5 :
         display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
-        if(role.Investor==true){
-        button=(
-          <Button animated color="green" onClick={this.submit}>
-            <Button.Content visible>Submit</Button.Content>
-            <Button.Content hidden>
-              <Icon name="check" />
-            </Button.Content>
-          </Button>)
+        if (role.Investor == true) {
+          button = (
+            <Button animated color="green" onClick={this.submit}>
+              <Button.Content visible>Submit</Button.Content>
+              <Button.Content hidden>
+                <Icon name="check" />
+              </Button.Content>
+            </Button>);
         }
         break;
       case 6 :
@@ -186,10 +174,10 @@ class Signup extends Component {
           changeDescriptionHandler={this.handleChangeProductDescription}
           titlePlaceholderText={'Enter your product name'}
           descriptionPlaceholderText={'Enter your product description'}
-          titleValue={product.title}
-          descriptionValue={product.description}
-                   />);
-        button = (<Button animated color="green" onClick={this.nextStep}>
+          titleValue={product.Title}
+          descriptionValue={product.Description}
+        />);
+        button = (<Button animated color="green" onClick={this.submit}>
           <Button.Content visible>Submit</Button.Content>
           <Button.Content hidden>
             <Icon name="check" />
@@ -200,7 +188,7 @@ class Signup extends Component {
     return (
       <div>
         <Grid>
-          <Progress percent={step / 7 } color="blue" progress active>Progress</Progress>
+          <Progress percent={step / 7} color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
@@ -216,7 +204,7 @@ class Signup extends Component {
             <Grid.Column floated="right" width={2}>
               {button}
             </Grid.Column>
-      </Grid.Row>
+          </Grid.Row>
         </Grid>
       </div>
     );

@@ -88,13 +88,13 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_USER_SUCCESS:
       return Object.assign({}, state,
         { email: action.payload.email },
-        { isAuth: true }
+        { isAuth: true },
       );
     case SIGNUP_USER_SUCCESS:
       return Object.assign({}, state,
         { email: action.payload.email },
         { isAuth: true },
-        { isNew: true }
+        { isNew: true },
       );
     case GOOGLE_LOGIN_SUCCESS:
       return Object.assign({}, state,
@@ -107,7 +107,7 @@ export default (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, { error: action.error });
     case GET_PREFERENCES_SUCCESS:
     case SAVE_PREFERENCES_SUCCESS:
-      return { ...state, ...action.preferences }
+      return { ...state, ...action.preferences };
     default:
       return state;
   }

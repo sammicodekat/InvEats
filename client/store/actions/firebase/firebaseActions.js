@@ -27,7 +27,7 @@ export const getPreferences = () => (
     return firebase.database()
     .ref(`/users/${currentUser.uid}`)
     .on('value', (snapshot) => {
-      console.log(snapshot.val())
+      console.log(snapshot.val());
       dispatch({
         type: GET_PREFERENCES_SUCCESS,
         preferences: snapshot.val(),
