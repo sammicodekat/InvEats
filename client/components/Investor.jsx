@@ -33,29 +33,31 @@ class Investor extends Component {
   }
 
   render() {
-    const matches = [
-      {
-        role: 'Product Owner',
-        range: ['<100k'],
-        round: ['Seed'],
-        industry: ['Sass', 'Healthcare'],
-        product: { Title: 'Hello', Description: 'We are Legion' },
-      },
-      {
-        role: 'Product Owner',
-        range: ['100k-300k'],
-        round: ['Seed'],
-        industry: ['Sass', 'FinTech'],
-        product: { Title: 'Hello2', Description: 'We are Legion' },
-      },
-      {
-        role: 'Product Owner',
-        range: ['<100k'],
-        round: ['Series A'],
-        industry: ['Sass', 'Consumer'],
-        product: { Title: 'Hello3', Description: 'We are Legion' },
-      },
-    ];
+    const matches = this.props.matches.list;
+
+    // [
+    //   {
+    //     role: 'Product Owner',
+    //     range: ['<100k'],
+    //     round: ['Seed'],
+    //     industry: ['Sass', 'Healthcare'],
+    //     product: { Title: 'Hello', Description: 'We are Legion' },
+    //   },
+    //   {
+    //     role: 'Product Owner',
+    //     range: ['100k-300k'],
+    //     round: ['Seed'],
+    //     industry: ['Sass', 'FinTech'],
+    //     product: { Title: 'Hello2', Description: 'We are Legion' },
+    //   },
+    //   {
+    //     role: 'Product Owner',
+    //     range: ['<100k'],
+    //     round: ['Series A'],
+    //     industry: ['Sass', 'Consumer'],
+    //     product: { Title: 'Hello3', Description: 'We are Legion' },
+    //   },
+    // ];
     return (
       <div>
         <h1> Investor Container </h1>
@@ -63,9 +65,9 @@ class Investor extends Component {
           {this.state.page === 'match' ?
             matches.map(match => (
               <Match
-                range={match.range}
-                round={match.round}
-                industry={match.industry}
+                range={Object.keys(match.range)[0]}
+                round={Object.keys(match.round)[0]}
+                industry={Object.keys(match.industry)}
                 title={match.product.Title}
                 description={match.product.Description}
                 clickHandler={this.handleMeetClick}
@@ -82,8 +84,9 @@ class Investor extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth, matches }) => ({
   auth,
+  matches,
 });
 
 export default connect(mapStateToProps, { getPreferences, getMatches })(Investor);

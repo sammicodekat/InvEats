@@ -12,15 +12,23 @@ import Button from './button/Button';
 class ProjectOwner extends Component {
   constructor(props) {
     super(props);
-    const { location, industry, round, range, product, role } = this.props.auth;
+    const { location, industry, round, range, product, role } = this.props.auth.preferences;
     this.state = {
-      role,
+      step: 1,
+      role: { Investor: false, 'Project Owner': false },
       location,
-      industry,
-      round,
-      range,
+      industry: { Healthcare: false, FinTech: false, Consumer: false, 'Digital Media': false, Ecommerce: false, SaaS: false },
+      round: { Idea: false, Seed: false, 'Series A': false, 'Series B': false, After: false },
+      range: { '<100k': false, '100k-300k': false, '300k-500k': false, '500k-1M': false, '>1M': false },
       product,
     };
+    this.state.role[Object.keys(role)] = true;
+    Object.keys(industry).forEach((key) => {
+      this.state.industry[key] = true;
+    });
+    this.state.round[Object.keys(round)] = true;
+    this.state.range[Object.keys(range)] = true;
+
     this.handleChangeLocation = this.handleChangeLocation.bind(this);
     this.handleClickRound = this.handleClickRound.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
@@ -95,7 +103,7 @@ class ProjectOwner extends Component {
   }
 
   render() {
-    const { location, industry, round, range, product } = this.props.auth;
+    const { location, industry, round, range, product } = this.props.auth.preferences;
     console.log('this.props: ', this.props);
 
     if (!product) {
