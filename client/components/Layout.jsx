@@ -44,30 +44,30 @@ class Layout extends Component {
   render() {
     const { visible } = this.state;
     return (
-      <div className="container">
-        <Navbar toggleVisibility={this.toggleVisibility} />
-        <Sidebar.Pushable as={Segment} >
-          <Sidebar as={Menu} animation='scale down' width="very wide" visible={visible} icon='labeled' vertical>
-            <Menu.Item name='name' >
-              <Icon name='name' />
-              My name
-            </Menu.Item>
-            <Menu.Item name="matches">
-              <Icon name="users" />
-              My Matches
-            </Menu.Item>
-            <Menu.Item name="reservation">
-              <Icon name="food" />
-              Reservations
-            </Menu.Item>
-          </Sidebar>
-          <Sidebar.Pusher>
-            <Segment className="ui center aligned segment">
-              {this.props.children}
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </div>
+    <Segment>
+      <Navbar toggleVisibility={this.toggleVisibility} />
+      <Sidebar.Pushable as={Segment} className="main">
+        <Sidebar as={Menu} animation='scale down' width="very wide" visible={visible} icon='labeled' vertical>
+          <Menu.Item name='name' >
+            <Icon name='name' />
+            My name
+          </Menu.Item>
+          <Menu.Item name="matches">
+            <Icon name="users" />
+            My Matches
+          </Menu.Item>
+          <Menu.Item name="reservation">
+            <Icon name="food" />
+            Reservations
+          </Menu.Item>
+        </Sidebar>
+        <Sidebar.Pusher>
+          <Segment basic>
+            {this.props.children}
+          </Segment>
+        </Sidebar.Pusher>
+      </Sidebar.Pushable>
+    </Segment>
             );
             }
 }
