@@ -14,7 +14,7 @@ import {
   Header
 } from 'semantic-ui-react'
 
-export default class Layout extends Component {
+class Layout extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,6 @@ export default class Layout extends Component {
     })
   }
 
-class Layout extends Component {
   componentWillMount() {
     if (window.localStorage.token) {
       const decoded = jwt.decode(localStorage.token);
