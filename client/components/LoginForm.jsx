@@ -3,6 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { googleLogin, loginUser } from '../store/actions/auth/authActions';
 import { getMatches } from '../store/actions/firebase/firebaseActions';
+import {
+  Button,
+  Image,
+  Icon,
+  Form,
+  Segment,
+} from 'semantic-ui-react';
 
 class LoginForm extends Component {
 
@@ -32,10 +39,10 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <h1> Login </h1>
-          <form className="form-horizontal" ref="loginForm" onSubmit={(e) => this.login(e)}>
+      <div className="loginpage">
+        <div className="title"><h1>InvEat</h1></div>
+        <Segment className="logingroup" raised>
+          <Form className="form-horizontal" ref="loginForm" onSubmit={(e) => this.login(e)}>
             <div className="form-group">
               <label className="col-lg-3 control-label">Username</label>
               <div className="col-lg-9">
@@ -51,13 +58,19 @@ class LoginForm extends Component {
             </div>
 
             <div className="form-actions">
-              <input className="btn btn-default linkto signup-btn" type="submit" value="Login" />
+              <Button className="linkto signup-btn googlebutton" type="submit" value="Login" color='blue'>
+                <Icon name='user' />Login
+              </Button>
+              {/* <input className="btn btn-default linkto signup-btn" type="submit" value="Login" /> */}
             </div>
-          </form>
-          <button onClick={e => this.loginWithGoogle(e)}>
+          </Form>
+          <Button color='google plus' className="googlebutton" onClick={e => this.loginWithGoogle(e)}>
+            <Icon name='google' />Login/Signup with Google
+          </Button>
+          {/* <button onClick={e => this.loginWithGoogle(e)}>
             Login with Google
-          </button>
-        </div>
+          </button> */}
+        </Segment>
       </div>
     );
   }

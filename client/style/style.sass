@@ -1,19 +1,53 @@
 @import url('https://fonts.googleapis.com/css?family=Maven+Pro|Sarina')
 @import '../components/button/button.sass'
+@import url('https://fonts.googleapis.com/css?family=Satisfy')
 
 body
   background-color: white
   font-family: 'Maven Pro', sans-serif
 
-.container
+// .container
+//   height: 100vh
+//   width: 100vw
+//   position: fixed
+//   top: 0
+//   background-color: #FF9800
+//   background-image: url('https://dl2.pushbulletusercontent.com/dIfDPsdbQm7Qx6cfHsF6h2dlZsgm5Qkh/brooke-lark-200721%20copy.jpg')
+//   background-blend-mode: overlay
+//   background-attachment: fixed
+//   background-position: center
+//   background-size: cover
+//   overflow: scroll
+//   .main
+//     margin-top: -10
+//     background-color: #FF9800
+.ui.segment
+  margin: 0
+  padding: 0
   height: 100vh
-  width: 100vw
-  position: fixed
-  top: 0
-  background-color: #FF9800
-  // background-image: url('../images/background.jpeg')
-  background-blend-mode: overlay
-  background-attachment: fixed
-  background-position: center
-  background-size: cover
-  overflow: scroll
+  .loginpage
+    background-image: url('https://dl2.pushbulletusercontent.com/dIfDPsdbQm7Qx6cfHsF6h2dlZsgm5Qkh/brooke-lark-200721%20copy.jpg')
+    height: 100vh
+    background-position: center
+    background-size: cover
+    overflow: scroll
+    .title
+      padding-top: 100px
+      text-align: center
+      h1
+        font-family: 'Satisfy', cursive
+        color: white
+        font-size: 100px
+    .logingroup
+        height: 220px
+        padding: 1em
+        margin: 1em
+        top: 150px
+        opacity: 0.9
+        .googlebutton
+            width: 250px
+            text-align:center
+.ui.menu
+  margin: 0
+.ui.inverted.teal.menu
+  background-color: #8D94BA
