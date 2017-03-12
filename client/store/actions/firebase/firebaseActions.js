@@ -3,7 +3,7 @@ import {
   SAVE_PREFERENCES_SUCCESS,
   GET_PREFERENCES_SUCCESS,
   GET_PREFERENCES,
-} from './actionTypes';
+} from './firebaseActionTypes';
 
 export const savePreferences = (preferences) => (
   (dispatch) => {

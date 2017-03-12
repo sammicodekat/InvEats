@@ -8,7 +8,7 @@ import {
   SAVE_PREFERENCES_SUCCESS,
   GET_PREFERENCES_SUCCESS,
   GET_PREFERENCES,
-} from '../actions/actionTypes';
+} from '../actions/firebase/firebaseActionTypes';
 
 const INITIAL_STATE = {
   isAuth: false,
