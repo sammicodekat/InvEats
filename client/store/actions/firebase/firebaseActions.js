@@ -9,6 +9,7 @@ export const savePreferences = preferences => (
   (dispatch) => {
     const role = preferences.role.Investor ? 'Investor' : 'Project Owner';
     const { currentUser } = firebase.auth();
+    console.log('currentUser',currentUser)
     return firebase.database()
     .ref(`/users/${currentUser.uid}/${role}`)
     .set(preferences)
@@ -23,7 +24,7 @@ export const getPreferences = () => (
     dispatch({ type: GET_PREFERENCES });
     const { currentUser } = firebase.auth();
     return firebase.database()
-    .ref(`/users/${currentUser.uid}/preferences`)
+    .ref(`/users/${currentUser.uid}`)
     .on('value', (snapshot) => {
       dispatch({
         type: GET_PREFERENCES_SUCCESS,

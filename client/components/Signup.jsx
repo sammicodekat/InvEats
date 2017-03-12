@@ -12,7 +12,6 @@ import SignUpAvailability from './SignUpAvailability';
 import SignUpCuisine from './SignUpCuisine';
 import SignUpProduct from './SignUpProduct';
 
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +40,10 @@ class Signup extends Component {
     this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.savePreferences(preferences)
   }
 
   updateNameState(e) {
