@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { savePreferences, getPreferences } from '../store/actions/firebase/firebaseActions';
+import { savePreferences, getPreferences, getMatches } from '../store/actions/firebase/firebaseActions';
 
 class Investor extends Component {
+
+  componentDidMount() {
+    this.props.getMatches(this.props.auth)
+  }
+
   render() {
     return (
         <div>
@@ -18,4 +23,4 @@ const mapStateToProps = ({ auth }) => {
   };
 };
 
-export default connect(mapStateToProps, { getPreferences })(Investor);
+export default connect(mapStateToProps, { getPreferences, getMatches })(Investor);
