@@ -7,12 +7,13 @@ import {
 
 export const savePreferences = preferences => (
   (dispatch) => {
-    const role = preferences.role.Investor ? 'Investor' : 'Project Owner';
+    const role = preferences.role.Investor ? 'investor' : 'projectOwner';
     const { currentUser } = firebase.auth();
-    console.log('currentUser',currentUser)
-    return firebase.database()
-    .ref(`/users/${currentUser.uid}/${role}`)
-    .set(preferences)
+    return Promise.all([firebase.database()
+    .ref(`/users/${currentUser.uid}`)
+    .set(preferences), firebase.database()
+    .ref(`/groups/${role}/${currentUser.uid}`)
+    .set(preferences)])
     .then(() =>
       dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences }),
     );
