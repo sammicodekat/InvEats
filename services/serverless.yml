@@ -7,10 +7,17 @@ provider:
 
 
 functions:
-  get:
+  getListings:
     handler: listings/get.get
     events:
       - http:
           path: listings
+          method: get
+          cors: true
+  getListing:
+    handler: listing/get.get
+    events:
+      - http:
+          path: listing
           method: get
           cors: true
