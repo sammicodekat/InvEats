@@ -12,8 +12,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuth) {
-      this.props.router.push('/setup');
-      console.log('isAuth?', this.props)
+      this.props.router.push('/signup');
     }
   }
 

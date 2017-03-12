@@ -1,7 +1,7 @@
 // class Component of LoginForm
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { googleLogin } from '../store/actions/authActions';
+import { savePreferences, getPreferences } from '../store/actions/firebaseActions';
 
 class Setup extends Component {
   render() {
@@ -21,4 +21,4 @@ const mapStateToProps = ({ auth }) => {
   };
 };
 
-export default connect(mapStateToProps, { googleLogin })(Setup);
+export default connect(mapStateToProps, { savePreferences, getPreferences })(Setup);
