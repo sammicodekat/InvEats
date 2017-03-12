@@ -1,57 +1,41 @@
 import firebase from 'firebase';
-import { flatMap, forEach } from 'lodash';
 import {
   SAVE_PREFERENCES_SUCCESS,
   GET_PREFERENCES_SUCCESS,
   GET_PREFERENCES,
   GET_PROJECT_OWNERS,
-  GET_PROJECT_OWNERS_SUCCESS,
+  GET_MATCHES_SUCCESS,
 } from './firebaseActionTypes';
 
 
-export const savePreferences = (preferences) => (
-  (dispatch) => {
-    console.log("prefs",preferences)
-    const role = preferences.role.Investor ? 'investor' : 'projectOwner';
-    console.log(preferences)
-    const { currentUser } = firebase.auth();
-    const preferences = {};
-    for (const prop in preferences) {
-      for (const key in preferences[prop]) {
-        if (!preferences[prop][key]) {
-          delete preferences[prop][key];
-        }
+export const savePreferences = (preferences) => (dispatch) => {
+  const role = preferences.role.Investor ? 'investor' : 'projectOwner';
+  const { currentUser } = firebase.auth();
+  for (const prop in preferences) {
+    for (const key in preferences[prop]) {
+      if (!preferences[prop][key] && prop !== 'product') {
+        delete preferences[prop][key];
       }
     }
-    console.log("prefs",preferences)
-    // const dbSave = Object.keys(preferences).map((key) => {
-    //   return firebase.database()
-    //   .ref(`/groups/${role}/${key}`)
-    //   .set({ [currentUser.uid]: true })
-    // })
-
-    const dbSave = Object.keys(preferences).map((key) => {
-      return firebase.database()
-      .ref(`/users/${key}/${currentUser.uid}`)
-      .set(preferences[key])
-    })
-
-    return Promise.all(dbSave).then((result) =>
-      dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences: preferences }),
-    );
   }
-);
-
-
+  const dbSave = Object.keys(preferences).map(key =>
+    firebase.database().ref(`/byId/${currentUser.uid}`)
+    .set({ ...preferences, email: currentUser.email }));
+  const dbSave2 = Object.keys(preferences).map(key =>
+    firebase.database().ref(`/users/${key}/${currentUser.uid}`)
+    .set(preferences[key]));
+  return Promise.all(dbSave).then(() =>
+    dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences: preferences }),
+  );
+};
 
 export const getPreferences = () => (
   (dispatch) => {
     dispatch({ type: GET_PREFERENCES });
     const { currentUser } = firebase.auth();
     return firebase.database()
-    .ref(`/users/${currentUser.uid}`)
+    .ref(`/byId/${currentUser.uid}`)
     .on('value', (snapshot) => {
-      console.log(snapshot.val());
       dispatch({
         type: GET_PREFERENCES_SUCCESS,
         preferences: snapshot.val(),
@@ -61,49 +45,55 @@ export const getPreferences = () => (
 );
 
 
-export const getProjectOwners = (user) => (
-  (dispatch) => {
-    dispatch({ type: GET_PROJECT_OWNERS });
-    console.log('user', user)
+export const getMatches = (user) => ((dispatch) => {
+  dispatch({ type: GET_PROJECT_OWNERS });
+  const categories = ['industry', 'range', 'round', 'role'];
 
-    const databaseRef = firebase.database().ref().child('users/industry');
-     const querybaseRef = querybase.ref(databaseRef, ['Ecommerce']);
-     const queriedDbRef = querybaseRef
-       .where({
-         Ecommerce: true,
-       });
-
-
-
-    // return firebase.database()
-    // .ref(`/users`)
-    // // .startAt('true')
-    // // .endAt('true')
-    queriedDbRef.on('value', (snapshot) => {
-      console.log('getProjectOwners',snapshot.val())
-      dispatch({
-        type: GET_PROJECT_OWNERS_SUCCESS,
-        projectOwners: snapshot.val(),
-        preferences: user
+  const promises = categories.map((category) => {
+    const databaseRef = firebase.database().ref().child(`users/${category}`);
+    const pref = Object.keys(user.preferences[category])[0];
+    const querybaseRef = querybase.ref(databaseRef, [pref]);
+    let prefConditional = pref;
+    if (category === 'role') {
+      prefConditional = 'Project Owner';
+    }
+    const queriedDbRef = querybaseRef.where({ [prefConditional]: true });
+    return new Promise(function(resolve, reject) {
+      queriedDbRef.on('value', (snapshot) => {
+        resolve(snapshot.val());
       });
     });
-  }
-);
+  });
 
-// const databaseRef = firebase.database().ref().child('people');
-//  const querybaseRef = querybase.ref(databaseRef, ['name', 'age', 'location']);
-//
-//  // Automatically handles composite keys
-//  querybaseRef.push({
-//    name: 'David',
-//    age: 27,
-//    location: 'SF'
-//  });
-//
-// // Find records by multiple fields
-// // returns a Firebase Database ref
-// const queriedDbRef = querybaseRef
-//   .where({
-//     name: 'David',
-//     age: 27
-//   });
+  Promise.all(promises).then((result) => {
+    let matches = [];
+    const final = {};
+    const res2 = [];
+    result.forEach((categ, index) =>
+    matches = matches.concat(...Object.keys(categ)));
+    matches = matches.filter((uid, index) => matches.indexOf(uid) === index)
+    result.forEach((categ, index) => final[categories[index]] = categ);
+
+    matches.forEach((uid) => {
+      if (final.industry[uid] && final.role[uid] &&
+        final.range[uid] && final.round[uid]) {
+        res2.push(uid);
+      }
+    });
+
+    console.log(res2, final)
+    const allUsers = res2.map((uid) => {
+      const query = firebase.database().ref(`/byId/${uid}`);
+      return new Promise((resolve) => {
+        query.on('value', (snapshot) => {
+          resolve(snapshot.val());
+        });
+      });
+    });
+
+    return Promise.all(allUsers).then(data => dispatch({
+      type: GET_MATCHES_SUCCESS,
+      matches: data,
+    }));
+  });
+});

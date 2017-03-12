@@ -16,10 +16,11 @@ import {
 const INITIAL_STATE = {
   isAuth: false,
   loading: false,
-  username: '',
-  email: '',
+  username: 'marina@gigi.com',
+  email: 'marina@gigi.com',
   photoURL: '',
   preferences: {},
+  isFetching: false,
   // role: {
   //   Investor: false,
   //   'Project Owner': false,
@@ -79,7 +80,7 @@ export default (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, { error: action.error });
     case GET_PREFERENCES_SUCCESS:
     case SAVE_PREFERENCES_SUCCESS:
-      return { ...state, ...action.preferences };
+      return { ...state, preferences: action.preferences, isFetching: false };
     default:
       return state;
   }
