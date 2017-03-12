@@ -7,7 +7,7 @@ export class PickRestaurant extends Component {
     super(props);
 
     this.state = {
-      restaurants: 'HRD'
+      restaurants: 'HRD',
     };
 
     this.pickADay = this.pickRestaurant.bind(this);
