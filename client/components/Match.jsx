@@ -13,7 +13,7 @@ export default class Match extends Component {
     });
     return (
       <div>
-        <h3>{`${title}`}</h3>
+        <h3 className="match-title">{`${title}`}</h3>
         <h5>{`${range} - ${round} - ${industries}`}</h5>
         <p> {description} </p>
         <Button label="Meet" clickHandler={clickHandler} />
