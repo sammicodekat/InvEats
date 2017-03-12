@@ -40,7 +40,7 @@ class LoginForm extends Component {
   render() {
     return (
       <div className="loginpage">
-        <div className="title"><h1>InvEat</h1></div>
+        <div className="title"><h1>InvEats</h1></div>
         <Segment className="logingroup" raised>
           <Form className="form-horizontal" ref="loginForm" onSubmit={(e) => this.login(e)}>
             <div className="form-group">
@@ -61,12 +61,13 @@ class LoginForm extends Component {
               <Button className="linkto signup-btn googlebutton" type="submit" value="Login" color='blue'>
                 <Icon name='user' />Login
               </Button>
+              <Button color='google plus' className="googlebutton" onClick={e => this.loginWithGoogle(e)}>
+                <Icon name='google' />Login/Signup with Google
+              </Button>
               {/* <input className="btn btn-default linkto signup-btn" type="submit" value="Login" /> */}
             </div>
           </Form>
-          <Button color='google plus' className="googlebutton" onClick={e => this.loginWithGoogle(e)}>
-            <Icon name='google' />Login/Signup with Google
-          </Button>
+
           {/* <button onClick={e => this.loginWithGoogle(e)}>
             Login with Google
           </button> */}
