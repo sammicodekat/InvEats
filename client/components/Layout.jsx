@@ -62,7 +62,7 @@ class Layout extends Component {
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
-            <Segment basic>
+            <Segment className="ui center aligned segment">
               {this.props.children}
             </Segment>
           </Sidebar.Pusher>
