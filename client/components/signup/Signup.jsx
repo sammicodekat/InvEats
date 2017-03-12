@@ -123,13 +123,13 @@ class Signup extends Component {
 
   handleChangeProductTitle(e) {
     this.setState({
-      product: { ...this.state.product, title: e.target.value },
+      product: { ...this.state.product, Title: e.target.value },
     });
   }
 
   handleChangeProductDescription(e) {
     this.setState({
-      product: { ...this.state.product, description: e.target.value },
+      product: { ...this.state.product, Description: e.target.value },
     });
   }
 
@@ -177,12 +177,12 @@ class Signup extends Component {
             changeDescriptionHandler={this.handleChangeProductDescription}
             titlePlaceholderText={'Enter your product name'}
             descriptionPlaceholderText={'Enter your product description'}
-            titleValue={product.title}
-            descriptionValue={product.description}
+            titleValue={product.Title}
+            descriptionValue={product.Description}
           />
         );
         rightButton = (
-          <Button animated color="green" onClick={this.nextStep} className="fluid ui button big">
+          <Button animated color="green" onClick={this.submit} className="fluid ui button big">
             <Button.Content visible>Submit</Button.Content>
             <Button.Content hidden>
               <Icon name="check" />
