@@ -11,7 +11,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {this.props.auth.role.Investor ?
+        {this.props.auth.preferences.role.Investor ?
           <Investor {...this.props} /> :
           <ProjectOwner {...this.props} />}
       </div>

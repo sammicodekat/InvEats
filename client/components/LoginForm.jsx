@@ -2,8 +2,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { googleLogin, loginUser } from '../store/actions/auth/authActions';
+import { getProjectOwners } from '../store/actions/firebase/firebaseActions';
 
 class LoginForm extends Component {
+
+  componentDidMount() {
+    this.props.getProjectOwners()
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuth && nextProps.auth.isNew) {
@@ -62,4 +67,4 @@ const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-export default connect(mapStateToProps, { googleLogin, loginUser })(LoginForm);
+export default connect(mapStateToProps, { googleLogin, loginUser, getProjectOwners })(LoginForm);

@@ -11,31 +11,38 @@ import {
 
 export const savePreferences = (preferences) => (
   (dispatch) => {
+    console.log("prefs",preferences)
     const role = preferences.role.Investor ? 'investor' : 'projectOwner';
+    console.log(preferences)
     const { currentUser } = firebase.auth();
-    const keysToStore = {};
+    const preferences = {};
     for (const prop in preferences) {
       for (const key in preferences[prop]) {
-        if (preferences[prop][key]) {
-          keysToStore[key] = true;
+        if (!preferences[prop][key]) {
+          delete preferences[prop][key];
         }
       }
     }
-    const dbSave = Object.keys(keysToStore).map((key) => {
+    console.log("prefs",preferences)
+    // const dbSave = Object.keys(preferences).map((key) => {
+    //   return firebase.database()
+    //   .ref(`/groups/${role}/${key}`)
+    //   .set({ [currentUser.uid]: true })
+    // })
+
+    const dbSave = Object.keys(preferences).map((key) => {
       return firebase.database()
-      .ref(`/groups/${role}/${key}`)
-      .set({ [currentUser.uid]: true })
+      .ref(`/users/${key}/${currentUser.uid}`)
+      .set(preferences[key])
     })
 
-    dbSave.push(firebase.database()
-    .ref(`/users/${currentUser.uid}`)
-    .set(keysToStore));
-
     return Promise.all(dbSave).then((result) =>
-      dispatch({ type: SAVE_PREFERENCES_SUCCESS, keysToStore }),
+      dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences: preferences }),
     );
   }
 );
+
+
 
 export const getPreferences = () => (
   (dispatch) => {
@@ -57,9 +64,22 @@ export const getPreferences = () => (
 export const getProjectOwners = (user) => (
   (dispatch) => {
     dispatch({ type: GET_PROJECT_OWNERS });
-    return firebase.database()
-    .ref(`/groups/projectOwner`)
-    .on('value', (snapshot) => {
+    console.log('user', user)
+
+    const databaseRef = firebase.database().ref().child('users/industry');
+     const querybaseRef = querybase.ref(databaseRef, ['Ecommerce']);
+     const queriedDbRef = querybaseRef
+       .where({
+         Ecommerce: true,
+       });
+
+
+
+    // return firebase.database()
+    // .ref(`/users`)
+    // // .startAt('true')
+    // // .endAt('true')
+    queriedDbRef.on('value', (snapshot) => {
       console.log('getProjectOwners',snapshot.val())
       dispatch({
         type: GET_PROJECT_OWNERS_SUCCESS,
@@ -69,3 +89,21 @@ export const getProjectOwners = (user) => (
     });
   }
 );
+
+// const databaseRef = firebase.database().ref().child('people');
+//  const querybaseRef = querybase.ref(databaseRef, ['name', 'age', 'location']);
+//
+//  // Automatically handles composite keys
+//  querybaseRef.push({
+//    name: 'David',
+//    age: 27,
+//    location: 'SF'
+//  });
+//
+// // Find records by multiple fields
+// // returns a Firebase Database ref
+// const queriedDbRef = querybaseRef
+//   .where({
+//     name: 'David',
+//     age: 27
+//   });
