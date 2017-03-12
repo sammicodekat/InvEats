@@ -1,16 +1,16 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react';
 
-const TextInputField = ({ label, placeholderText, changeHandler, value }) => (
+const TextInputField = ({ label, placeholderText, changeHandler, value, classN }) => (
   <div>
-    <div>
-      <input
+    <Input
+        className={classN}
         onChange={changeHandler}
         placeholder={placeholderText}
         type="text"
         name={label}
         value={value}
-      />
-    </div>
+    />
   </div>
 );
 
