@@ -5,9 +5,9 @@ import { savePreferences, getPreferences } from '../store/actions/firebase/fireb
 class ProjectOwner extends Component {
   render() {
     return (
-        <div>
-          <h1> ProjectOwner Container </h1>
-        </div>
+      <div>
+        THIS IS A PROJECT OWNER CONTAINER
+      </div>
     );
   }
 }

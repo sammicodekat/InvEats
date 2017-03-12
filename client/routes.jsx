@@ -32,4 +32,3 @@ export default (
 //     <Route path="login" component={LoginForm} />
 //     <Route path="setup" component={RequireAuth(Setup)} />
 //     <Route path="home" component={RequireAuth(Home)} />
-// >>>>>>> token saved in localstorage
