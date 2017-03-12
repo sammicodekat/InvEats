@@ -14,7 +14,7 @@ const SignUpAvailability = () => {
   const handleClick = (e) => {
     const longDate = getISODateNextWeek(e);
     // send it to openTable
-    return;
+    this.props.handleClick(longDate);
   };
 
   const getISODateNextWeek = (e) => {
