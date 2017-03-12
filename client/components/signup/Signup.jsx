@@ -9,7 +9,6 @@ import SignUpRound from './SignUpRound';
 import SignUpRange from './SignUpRange';
 import SignUpIndustry from './SignUpIndustry';
 import SignUpAvailability from './SignUpAvailability';
-import SignUpCuisine from './SignUpCuisine';
 import SignUpProduct from './SignUpProduct';
 
 class Signup extends Component {
@@ -199,9 +198,6 @@ class Signup extends Component {
         break;
       case 6 :
         display = (<SignUpAvailability clickHandler={this.handleClickAvailability} options={schedule} />);
-        break;
-      case 7 :
-        display = (<SignUpCuisine clickHandler={this.handleClickCuisine} options={cuisine} />);
         break;
       case 8 :
         display = (<SignUpProduct
