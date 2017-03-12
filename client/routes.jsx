@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+<<<<<<< HEAD
 import Layout from './components/Layout';
 import LoginForm from './components/LoginForm';
 import Signup from './components/Signup';
@@ -17,3 +18,19 @@ export default (
     </Route> */}
   </Route>
 );
+
+
+
+// =======
+// import AppContainer from './components/AppContainer';
+// import LoginForm from './components/LoginForm';
+// import Setup from './components/Setup';
+// import Home from './components/Home';
+// import RequireAuth from './components/RequireAuth';
+//
+// export default (
+//   <Route path="/" component={AppContainer}>
+//     <Route path="login" component={LoginForm} />
+//     <Route path="setup" component={RequireAuth(Setup)} />
+//     <Route path="home" component={RequireAuth(Home)} />
+// >>>>>>> token saved in localstorage
