@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Button, Icon, Progress } from 'semantic-ui-react';
 import { googleLogin } from '../../store/actions/auth/authActions';
 import { savePreferences, getPreferences } from '../../store/actions/firebase/firebaseActions';
-import { getListings } from '../../store/actions/openTable/openTableActions'
+import { getListings } from '../../store/actions/openTable/openTableActions';
 import SignUpRole from './SignUpRole';
 import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
@@ -134,8 +134,16 @@ class Signup extends Component {
   }
 
   render() {
-    const { role, step, location, industry, round, range, cuisine, schedule, product } = this.state;
+    const { role, step, location, industry, round, range, product } = this.state;
     let display = '';
+    let rightButton = (
+      <Button animated color="blue" onClick={this.nextStep} className="fluid ui button big">
+        <Button.Content visible>Next</Button.Content>
+        <Button.Content hidden>
+          <Icon name="right arrow" />
+        </Button.Content>
+      </Button>
+    );
     switch (step) {
       case 1 :
         display = (<SignUpRole className="signup" clickHandler={this.handleClickRole} options={role} />);
@@ -151,44 +159,53 @@ class Signup extends Component {
         break;
       case 5 :
         display = (<SignUpIndustry className="signup" clickHandler={this.handleClickIndustry} options={industry} />);
-        if(role.Investor==true){
-        button=(
-          <Button animated color="green" onClick={this.submit}>
+        if (role.Investor === true) {
+          rightButton = (
+            <Button animated color="green" onClick={this.submit} className="fluid ui button big">
+              <Button.Content visible>Submit</Button.Content>
+              <Button.Content hidden>
+                <Icon name="check" />
+              </Button.Content>
+            </Button>
+          );
+        }
+        break;
+      case 6 :
+        display = (
+          <SignUpProduct
+            changeTitleHandler={this.handleChangeProductTitle}
+            changeDescriptionHandler={this.handleChangeProductDescription}
+            titlePlaceholderText={'Enter your product name'}
+            descriptionPlaceholderText={'Enter your product description'}
+            titleValue={product.title}
+            descriptionValue={product.description}
+          />
+        );
+        rightButton = (
+          <Button animated color="green" onClick={this.nextStep} className="fluid ui button big">
             <Button.Content visible>Submit</Button.Content>
             <Button.Content hidden>
               <Icon name="check" />
             </Button.Content>
-          </Button>)
-        }
+          </Button>
+        );
         break;
-      case 6 :
-        display = (<SignUpProduct
-          changeTitleHandler={this.handleChangeProductTitle}
-          changeDescriptionHandler={this.handleChangeProductDescription}
-          titlePlaceholderText={'Enter your product name'}
-          descriptionPlaceholderText={'Enter your product description'}
-          titleValue={product.title}
-          descriptionValue={product.description}
-                   />);
-        button = (<Button animated color="green" onClick={this.nextStep}>
-          <Button.Content visible>Submit</Button.Content>
-          <Button.Content hidden>
-            <Icon name="check" />
-          </Button.Content>
-        </Button>);
-        break;
+      default: display = (
+        <div />
+      );
     }
     return (
-      <div style={{width:"70%", "margin":"0 auto"}}>
+      <div style={{ width: '70%', margin: '0 auto' }}>
         <Grid>
-          <Progress percent={step / 7 } color="blue" progress active>Progress</Progress>
+          <Progress className="fluid ui progress" width={step / 7} percent={step / 7} color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
             <Grid.Column width={16}>{display}</Grid.Column>
           </Grid.Row>
+          {this.state.step !== 1 &&
           <Grid.Row>
-            <Grid.Column floated="left" width={4}>
+            <Grid.Column floated="left" style={{ width: '50%' }}>
               <Button animated color="blue" onClick={this.prevStep} className="fluid ui button big">
                 <Button.Content visible>Prev</Button.Content>
                 <Button.Content hidden>
@@ -196,15 +213,10 @@ class Signup extends Component {
                 </Button.Content>
               </Button>
             </Grid.Column>
-            <Grid.Column floated="right" width={4}>
-              <Button animated color="blue" onClick={this.nextStep} className="fluid ui button big">
-                <Button.Content visible>Next</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="right arrow" />
-                </Button.Content>
-              </Button>
+            <Grid.Column floated="right" style={{ width: '50%' }}>
+              {rightButton}
             </Grid.Column>
-          </Grid.Row>
+          </Grid.Row>}
         </Grid>
       </div>
     );
