@@ -56,16 +56,17 @@ export const loginUser = (user) => (
     dispatch(loginUserStart(user));
     const { email, password } = user;
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((currentUser) =>
+      .then(currentUser =>
         firebase.database().ref(`/users/${currentUser.uid}`)
-        .on('value', (snapshot) =>
+        .on('value', snapshot =>
           dispatch(loginUserSuccess({ ...user, ...snapshot.val() }))
         ))
-      .catch((err) =>
+      .catch(() =>
         firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(() => {
+        .then((newUser) => {
+          console.log('newUser obj',newUser)
           dispatch(signupUserSuccess(user));
         })
       )
-      .catch((error) => dispatch(loginUserError(error.message)));
+      .catch(error => dispatch(loginUserError(error.message)));
   });
