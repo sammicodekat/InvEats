@@ -3,7 +3,6 @@ import Button from './button/Button';
 
 export default class Match extends Component {
   render() {
-    console.log('rendering this thing')
     const { range, round, industry, title, clickHandler, description } = this.props;
     const industries = industry.reduce((acc, curr) => {
       if (acc === '') {
