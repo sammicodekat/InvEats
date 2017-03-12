@@ -46,7 +46,7 @@ class Layout extends Component {
     return (
       <div className="container">
         <Navbar toggleVisibility={this.toggleVisibility} />
-        <Sidebar.Pushable as={Segment} className='sidebar' >
+        <Sidebar.Pushable as={Segment} >
           <Sidebar as={Menu} animation='scale down' width="very wide" visible={visible} icon='labeled' vertical>
             <Menu.Item name='name' >
               <Icon name='name' />
