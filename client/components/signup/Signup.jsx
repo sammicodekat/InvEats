@@ -32,7 +32,6 @@ class Signup extends Component {
     this.handleClickRound = this.handleClickRound.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
     this.handleClickIndustry = this.handleClickIndustry.bind(this);
-    this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
     this.submit = this.submit.bind(this);
@@ -139,19 +138,19 @@ class Signup extends Component {
     let display = '';
     switch (step) {
       case 1 :
-        display = (<SignUpRole className="signup signup-role" clickHandler={this.handleClickRole} options={role} />);
+        display = (<SignUpRole className="signup" clickHandler={this.handleClickRole} options={role} />);
         break;
       case 2 :
-        display = (<SignUpLocation className="signup signup-role" changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />);
+        display = (<SignUpLocation className="signup" changeHandler={this.handleChangeLocation} label={location} placeholderText={'Enter your city'} value={this.state.location} />);
         break;
       case 3 :
-        display = (<SignUpRound className="signup signup-role" clickHandler={this.handleClickRound} options={round} />);
+        display = (<SignUpRound className="signup" clickHandler={this.handleClickRound} options={round} />);
         break;
       case 4 :
-        display = (<SignUpRange className="signup signup-role" clickHandler={this.handleClickRange} options={range} />);
+        display = (<SignUpRange className="signup" clickHandler={this.handleClickRange} options={range} />);
         break;
       case 5 :
-        display = (<SignUpIndustry className="signup signup-role" clickHandler={this.handleClickIndustry} options={industry} />);
+        display = (<SignUpIndustry className="signup" clickHandler={this.handleClickIndustry} options={industry} />);
         if(role.Investor==true){
         button=(
           <Button animated color="green" onClick={this.submit}>
