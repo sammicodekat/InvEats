@@ -3,7 +3,7 @@ import {
   GET_LISTING,
   SET_LISTINGS,
   GET_LISTINGS_DETAILS,
-} from '../actions/demo/demoActionTypes';
+} from '../actions/openTable/openTableActionTypes';
 import _ from 'lodash';
 
 const initialState = {
@@ -15,15 +15,9 @@ const initialState = {
 function openTableReducer(state = initialState, action) {
   switch (action.type) {
     case GET_LISTINGS:
-      return Object.assign({}, state, {
-        listings: [],
-        loading: true,
-      });
+      return {...state, listings: [], loading: true};
     case SET_LISTINGS:
-      return Object.assign({}, state, {
-        listings: action.payload,
-        loading: false,
-      });
+      return {...state, listings: action.payload, loading: false};
     case GET_LISTING:
       return Object.assign({}, state, {
         selectedListing: _.find(state.listings, { rid: action.id }),
@@ -31,7 +25,7 @@ function openTableReducer(state = initialState, action) {
     case GET_LISTINGS_DETAILS:
       return Object.assign({}, state, {
         loading: true,
-      })
+      });
     default:
       return state;
   }

@@ -43,8 +43,9 @@ export class PickRestaurant extends Component {
   }
 
   render() {
-    const subset = this.props.listings.slice(this.state.index, this.state.index + 5);
 
+    const subset = this.props.listings.slice(this.state.index, this.state.index + 5);
+    console.log("SUBSIET", subset);
     // Map over restaurant data
     let display;
     if(this.props.loading) {

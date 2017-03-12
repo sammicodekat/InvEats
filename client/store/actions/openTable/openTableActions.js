@@ -29,7 +29,6 @@ export function getListings(date, location) {
       params: { date, location },
     })
       .then(({data}) => {
-        console.log('Got OpenTable Listings:', data);
         const promises = data.slice(0, 5).map(getListing);
         return Promise.all(promises)
           .then((results) => {
