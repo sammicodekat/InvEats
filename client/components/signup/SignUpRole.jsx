@@ -3,7 +3,7 @@ import ButtonsGroup from '../button/Buttonsgroup';
 
 
 const SignUpRole = ({ clickHandler, options }) => (
-  <ButtonsGroup clickHandler={clickHandler} options={options} />
+  <ButtonsGroup classN='button-test' clickHandler={clickHandler} options={options} />
 );
 
 export default SignUpRole;
