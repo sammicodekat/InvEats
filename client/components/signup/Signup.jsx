@@ -8,8 +8,6 @@ import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
 import SignUpRange from './SignUpRange';
 import SignUpIndustry from './SignUpIndustry';
-import SignUpAvailability from './SignUpAvailability';
-import SignUpCuisine from './SignUpCuisine';
 import SignUpProduct from './SignUpProduct';
 
 class Signup extends Component {
@@ -36,7 +34,6 @@ class Signup extends Component {
     this.handleClickRound = this.handleClickRound.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
     this.handleClickIndustry = this.handleClickIndustry.bind(this);
-    this.handleClickAvailability = this.handleClickAvailability.bind(this);
     this.handleClickCuisine = this.handleClickCuisine.bind(this);
     this.handleChangeProductTitle = this.handleChangeProductTitle.bind(this);
     this.handleChangeProductDescription = this.handleChangeProductDescription.bind(this);
@@ -57,7 +54,7 @@ class Signup extends Component {
 
   nextStep() {
     const { step } = this.state;
-    if (step === 8 || (this.state.role.Investor && step === 5)) {
+    if (step === 6 || (this.state.role.Investor && step === 5)) {
       this.props.savePreferences(this.state);
       return;
       // call firbase with this.state
@@ -136,21 +133,21 @@ class Signup extends Component {
     });
   }
 
-  handleClickAvailability(e) {
-    const update = e.target.name.split(' ');
+  // handleClickAvailability(e) {
+  //   const update = e.target.name.split(' ');
 
-    const { schedule } = this.state;
-    const newState = {
-      ...schedule,
-      [update[0]]: {
-        ...this.state.schedule[update[0]],
-        [update[1]]: !this.state.schedule[update[0]][update[1]],
-      },
-    };
-    this.setState({
-      schedule: newState,
-    });
-  }
+  //   const { schedule } = this.state;
+  //   const newState = {
+  //     ...schedule,
+  //     [update[0]]: {
+  //       ...this.state.schedule[update[0]],
+  //       [update[1]]: !this.state.schedule[update[0]][update[1]],
+  //     },
+  //   };
+  //   this.setState({
+  //     schedule: newState,
+  //   });
+  // }
 
   handleClickCuisine(e) {
     const { cuisine } = this.state;
@@ -198,12 +195,6 @@ class Signup extends Component {
         display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
         break;
       case 6 :
-        display = (<SignUpAvailability clickHandler={this.handleClickAvailability} options={schedule} />);
-        break;
-      case 7 :
-        display = (<SignUpCuisine clickHandler={this.handleClickCuisine} options={cuisine} />);
-        break;
-      case 8 :
         display = (<SignUpProduct
           changeTitleHandler={this.handleChangeProductTitle}
           changeDescriptionHandler={this.handleChangeProductDescription}
