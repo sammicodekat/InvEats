@@ -4,19 +4,23 @@ import MatchList from './MatchList';
 class MatchLocation extends React.Component {
   constructor(props) {
     super(props);
+    console.log("INVOKE FOR FUCKS SAKE")
     this.state = {
       mapStyle: { width: '100%', height: '400px' },
     };
   }
   componentDidMount() {
-    if(this.props.listings) {
+    console.log("gotta render lol");
+    if(this.props.listings && this.props.listings.length > 0) {
       this
         .createOptions()
         .initMap(this.props.listings);
     }
   }
   initMap(openTableData) {
-    this.buildPins(openTableData);
+    setTimeout(() => {
+      this.buildPins(openTableData);
+    }, 0);
   }
   createOptions() {
     this.setState({
@@ -59,6 +63,7 @@ class MatchLocation extends React.Component {
     return this;
   }
   render() {
+    console.log('kjhhjhjkhkjhkjh')
     return (
       <section className="map-container">
         <div className="gMap" ref="map" style={this.state.mapStyle}></div>

@@ -10,7 +10,7 @@ class MatchList extends React.Component {
     return (
       <section className="matches-list-container">
         <ul style={listStyle}>
-          {this.props.restData ? this.props.restData.map(({ rawData }) => <MatchItem key={`${rest.latitude}${rest.longitude}`} {...rawData} /> ) : null}
+          {this.props.restData ? this.props.restData.map(({ rawData }) => <MatchItem key={`${rawData.latitude}${rawData.longitude}`} {...rawData} /> ) : null}
         </ul>
       </section>
     )

@@ -12,7 +12,7 @@ const getListing = ({ href }) => {
     axios({
       url: `https://h1ixfpoi24.execute-api.us-east-1.amazonaws.com/dev/listings/${rid}`,
       method: 'GET',
-      params: { url: href },
+      params: { url: rid },
     })
     .then(({data}) => data)
   );

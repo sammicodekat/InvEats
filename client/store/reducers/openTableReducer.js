@@ -9,7 +9,7 @@ import _ from 'lodash';
 const initialState = {
   listings: [],
   selectedListing: null,
-  loading: false,
+  loading: true,
 };
 
 function openTableReducer(state = initialState, action) {
