@@ -45,11 +45,11 @@ class Layout extends Component {
     const { visible } = this.state;
     return (
       <div className="container">
-        <Navbar toggleVisibility={this.toggleVisibility}  />
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation="scale down" width={'thin'} visible={visible} icon="labeled" vertical>
-            <Menu.Item name="name">
-              <Icon name="name" />
+        <Navbar toggleVisibility={this.toggleVisibility} />
+        <Sidebar.Pushable as={Segment} className='sidebar' >
+          <Sidebar as={Menu} animation='scale down' width="very wide" visible={visible} icon='labeled' vertical>
+            <Menu.Item name='name' >
+              <Icon name='name' />
               My name
             </Menu.Item>
             <Menu.Item name="matches">
@@ -68,8 +68,8 @@ class Layout extends Component {
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </div>
-    );
-  }
+            );
+            }
 }
 
 const mapStateToProps = ({ auth }) => ({
