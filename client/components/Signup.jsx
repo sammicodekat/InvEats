@@ -62,7 +62,7 @@ export default class Signup extends Component {
             break;
     case 2 : display=(<div>2</div>)
             break;
-    case 3 : display=(<div>2</div>)
+    case 3 : display=(<div>3</div>)
             break;
     default: display=(<Role selectRole={this.selectRole} role={role} />)
             break;
