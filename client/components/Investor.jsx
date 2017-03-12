@@ -68,7 +68,6 @@ class Investor extends Component {
     // ];
     return (
       <div>
-        <h1> Investor Container </h1>
         <div>
           {this.state.page === 'match' ?
             matches.length ?

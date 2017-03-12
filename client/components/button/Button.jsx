@@ -16,7 +16,7 @@ export default class SemanticButton extends Component {
     const { name, checked, label, classN } = this.props;
     return (
       <Button
-        className={`${classN} button-signup`}
+        className={`button-signup ${classN}`}
         onClick={this.handleClick}
         name={name}
         color={checked ? 'green' : 'teal'}
