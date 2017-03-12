@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Grid, Button, Icon, Progress } from 'semantic-ui-react';
 import { googleLogin } from '../../store/actions/auth/authActions';
 import { savePreferences, getPreferences } from '../../store/actions/firebase/firebaseActions';
+import { getListings } from '../../store/actions/openTable/openTableActions'
 import SignUpRole from './SignUpRole';
 import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
@@ -130,21 +131,23 @@ class Signup extends Component {
     });
   }
 
-  // handleClickAvailability(e) {
-  //   const update = e.target.name.split(' ');
+  handleClickAvailability(date) {
+    // const update = e.target.name.split(' ');
 
-  //   const { schedule } = this.state;
-  //   const newState = {
-  //     ...schedule,
-  //     [update[0]]: {
-  //       ...this.state.schedule[update[0]],
-  //       [update[1]]: !this.state.schedule[update[0]][update[1]],
-  //     },
-  //   };
-  //   this.setState({
-  //     schedule: newState,
-  //   });
-  // }
+    // const { schedule } = this.state;
+    // const newState = {
+    //   ...schedule,
+    //   [update[0]]: {
+    //     ...this.state.schedule[update[0]],
+    //     [update[1]]: !this.state.schedule[update[0]][update[1]],
+    //   },
+    // };
+    // this.setState({
+    //   schedule: newState,
+    // });
+
+    this.props.getListings(date, this.props.auth.preferences.location);
+  }
 
   handleClickCuisine(e) {
     const { cuisine } = this.state;
@@ -242,4 +245,8 @@ const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-export default connect(mapStateToProps, { getPreferences, savePreferences })(Signup);
+export default connect(mapStateToProps, {
+  getPreferences,
+  savePreferences,
+  getListings,
+})(Signup);
