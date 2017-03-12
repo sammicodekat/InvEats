@@ -12,9 +12,9 @@ import Button from './button/Button';
 class ProjectOwner extends Component {
   constructor(props) {
     super(props);
-    const { location, industry, round, range, product } = this.props;
+    const { location, industry, round, range, product, role } = this.props.auth;
     this.state = {
-      role: { Investor: false, 'Project Owner': true },
+      role,
       location,
       industry,
       round,
@@ -95,8 +95,13 @@ class ProjectOwner extends Component {
   }
 
   render() {
-    const { location, industry, round, range, product } = this.state;
+    const { location, industry, round, range, product } = this.props.auth;
     console.log('this.props: ', this.props);
+
+    if (!product) {
+      return <div />;
+    }
+
     return (
       <div>
         <h2>Edit your profile</h2>
