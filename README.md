@@ -1,1 +1,4 @@
-# Tinder But For Smart People
+# Inveats
+>Tinder For Startups
+
+https://inveats.netlify.com/
