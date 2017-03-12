@@ -25,6 +25,14 @@ export function getListings(date, location) {
   };
 }
 
-export function getListing(id) {
+const getListing = (url) => (
+  axios({
+    url: 'https://p0d8h5amgl.execute-api.us-east-1.amazonaws.com/dev/listing',
+    method: 'GET',
+    params: { url }
+  })
+)
+
+export function bookListing(id) {
   return { type: GET_LISTING, id };
 }

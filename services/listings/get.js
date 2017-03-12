@@ -1,8 +1,8 @@
-const axios = require('axios');
+var axios = require('axios');
 
 module.exports.get = function(event, context, callback) {
-  const date = event.date;
-  const location = event.location;
+  var date = event.queryStringParameters.date;
+  var location = event.queryStringParameters.location;
 
   console.log('event', event);
 
@@ -15,7 +15,10 @@ module.exports.get = function(event, context, callback) {
     },
   })
     .then((encoded) => {
-      const { lat, lng } = encoded.results[0].geometry.location;
+      var coords = encoded.data.results[0].geometry.location;
+      var lat = coords.lat;
+      var lng = coords.lng;
+
       return axios({
         url: 'https://platform.opentable.com/availability',
         method: 'GET',
@@ -28,17 +31,20 @@ module.exports.get = function(event, context, callback) {
           backward_minutes: 90,
           longitude: lng,
           latitude: lat,
+          radius: 5,
+          party_size: 2,
+          include_unavailable: false,
         },
-      })
+      });
     })
     .then((data) => {
       callback(null, {
         statusCode: 200,
-        body: JSON.stringify(data.data.items),
+        body: JSON.stringify(data.data.availabilities),
       });
     })
     .catch((err) => {
-      console.log("ERRORED OUT SOMEHOW", err);
+      console.log('ERRORED OUT SOMEHOW', err);
       callback(err);
     });
 };
