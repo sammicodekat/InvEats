@@ -67,7 +67,7 @@ class ProjectOwner extends Component {
     const { range } = this.state;
     const newState = {
       ...range,
-      [e.target.name]: !this.state.range[e.target.name],
+      [e.target.name]: !this.state.industry[e.target.name],
     };
 
     this.setState({

@@ -112,7 +112,7 @@ class Signup extends Component {
     const { industry } = this.state;
     const newState = {
       ...industry,
-      [e.target.name]: !this.state.range[e.target.name],
+      [e.target.name]: !this.state.industry[e.target.name],
     };
 
     this.setState({
