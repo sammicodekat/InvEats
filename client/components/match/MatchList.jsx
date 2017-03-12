@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import MatchItem from './MatchItem';
+
 class MatchList extends React.Component {
   constructor(props) {
     super(props);

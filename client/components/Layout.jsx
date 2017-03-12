@@ -12,7 +12,7 @@ import {
   Image,
   Icon,
   Header
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 class Layout extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import TextInputField from './TextInputField.jsx';
-import TextAreaField from './TextAreaField.jsx';
+import TextInputField from '../TextInputField';
+import TextAreaField from '../TextAreaField';
 
 const SignUpProduct = ({ changeTitleHandler, changeDescriptionHandler, titlePlaceholderText, descriptionPlaceholderText, options, descriptionValue, titleValue }) => (
   <div>

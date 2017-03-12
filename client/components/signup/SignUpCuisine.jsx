@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonsGroup from './Buttonsgroup.jsx';
+import ButtonsGroup from '../Buttonsgroup';
 
 
 const SignUpCuisine = ({ clickHandler, options }) => (

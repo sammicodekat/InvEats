@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { googleLogin } from '../store/actions/auth/authActions';
 import { Grid, Button, Icon, Progress } from 'semantic-ui-react';
-import { savePreferences, getPreferences } from '../store/actions/firebase/firebaseActions';
+import { googleLogin } from '../../store/actions/auth/authActions';
+import { savePreferences, getPreferences } from '../../store/actions/firebase/firebaseActions';
 import SignUpRole from './SignUpRole';
 import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
@@ -57,9 +57,9 @@ class Signup extends Component {
 
   nextStep() {
     const { step } = this.state;
-    console.log('nextStep clicked');
-    if (step === 8 || (this.state.role.investor && step === 5)) {
+    if (step === 8 || (this.state.role.Investor && step === 5)) {
       this.props.savePreferences(this.state);
+      return;
       // call firbase with this.state
       // re-route
       // return

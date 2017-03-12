@@ -5,7 +5,7 @@ import { Router, browserHistory } from 'react-router';
 import firebase from 'firebase';
 import configureStore from './store/configureStore';
 import config from '../firebase_config';
-import routes from './routes.jsx';
+import routes from './routes';
 
 const store = configureStore({});
 
