@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { savePreferences, getPreferences, getMatches } from '../store/actions/firebase/firebaseActions';
 import Match from './Match';
@@ -67,8 +68,8 @@ class Investor extends Component {
     //   },
     // ];
     return (
-      <div>
-        <div>
+      <div style={{ margin: '2%' }}>
+        <Card.Group>
           {this.state.page === 'match' ?
             matches.length ?
               matches.map(match => (
@@ -88,7 +89,7 @@ class Investor extends Component {
               <Button label="Back" clickHandler={this.handleBackClick} />
             </div>
           }
-        </div>
+        </Card.Group>
       </div>
     );
   }
