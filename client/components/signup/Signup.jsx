@@ -191,19 +191,18 @@ class Signup extends Component {
           titleValue={product.title}
           descriptionValue={product.description}
                    />);
-        button=(
-          <Button animated color="green" onClick={this.prevStep}>
-            <Button.Content visible>Submit</Button.Content>
-            <Button.Content hidden>
-              <Icon name="check" />
-            </Button.Content>
-          </Button>);
+        button = (<Button animated color="green" onClick={this.nextStep}>
+          <Button.Content visible>Submit</Button.Content>
+          <Button.Content hidden>
+            <Icon name="check" />
+          </Button.Content>
+        </Button>);
         break;
     }
     return (
       <div>
         <Grid>
-          <Progress percent={step / 6 * 20} color="blue" progress active>Progress</Progress>
+          <Progress percent={step / 7 } color="blue" progress active>Progress</Progress>
         </Grid>
         <Grid verticalAlign="middle" centered>
           <Grid.Row>
