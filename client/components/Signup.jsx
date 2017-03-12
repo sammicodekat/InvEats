@@ -59,8 +59,14 @@ export default class Signup extends Component {
     let display = '';
     switch(step){
     case 1 : display=(<Role selectRole={this.selectRole} role={role} />)
+            break;
+    case 2 : display=(<div>2</div>)
+            break;
+    case 3 : display=(<div>2</div>)
+            break;
+    default: display=(<Role selectRole={this.selectRole} role={role} />)
+            break;
     }
-
     return (
   <div>
     <Grid>
@@ -69,7 +75,7 @@ export default class Signup extends Component {
     <Grid verticalAlign='middle' centered>
       <Grid.Row>
         <Grid.Column floated='left' width={2}>
-          <Button animated color="blue">
+          <Button animated color="blue" onClick={this.prevStep}>
             <Button.Content visible>Prev</Button.Content>
             <Button.Content hidden>
               <Icon name='left arrow' />
@@ -78,7 +84,7 @@ export default class Signup extends Component {
         </Grid.Column>
         <Grid.Column width={8}>{display}</Grid.Column>
         <Grid.Column floated='right' width={2}>
-          <Button animated color="blue">
+          <Button animated color="blue" onClick={this.nextStep}>
             <Button.Content visible>Next</Button.Content>
             <Button.Content hidden>
               <Icon name='right arrow' />
