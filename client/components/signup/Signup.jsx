@@ -189,7 +189,6 @@ class Signup extends Component {
             <Button animated color="green" onClick={this.submit} className="fluid ui button big">
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
-                <Icon name="check" />
               </Button.Content>
             </Button>
           );

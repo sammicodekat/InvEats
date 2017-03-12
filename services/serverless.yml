@@ -14,10 +14,10 @@ functions:
           path: listings
           method: get
           cors: true
-  getListing:
+  infoForListing:
     handler: listing/get.get
     events:
       - http:
-          path: listing
+          path: listings/{rid}
           method: get
           cors: true

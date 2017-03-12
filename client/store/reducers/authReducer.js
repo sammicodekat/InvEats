@@ -19,39 +19,6 @@ const INITIAL_STATE = {
   username: 'marina@gigi.com',
   email: 'marina@gigi.com',
   photoURL: '',
-  preferences: {},
-  isFetching: false,
-  // role: {
-  //   Investor: false,
-  //   'Project Owner': false,
-  // },
-  // location: '',
-  // industry: {
-  //   Healthcare: false,
-  //   FinTech: false,
-  //   Consumer: false,
-  //   'Digital Media': false,
-  //   Ecommerce: false,
-  //   SaaS: false,
-  // },
-  // round: {
-  //   Idea: false,
-  //   Seed: false,
-  //   'Series A': false,
-  //   'Series B': false,
-  //   After: false,
-  // },
-  // range: {
-  //   '<$100k': false,
-  //   ' $100k-$300k': false,
-  //   '$300k-$500k': false,
-  //   '$500k-$1M': false,
-  //   '>$1M': false,
-  // },
-  // product: {
-  //   Title: '',
-  //   Description: '',
-  // },
 };
 
 export default (state = INITIAL_STATE, action) => {

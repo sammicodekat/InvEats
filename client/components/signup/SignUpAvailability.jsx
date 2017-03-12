@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../button/Button';
 
-const SignUpAvailability = () => {
+const SignUpAvailability = (props) => {
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   const times = [
     { '12Hour': '12PM', '24Hour': 12 },
@@ -14,7 +14,7 @@ const SignUpAvailability = () => {
   const handleClick = (e) => {
     const longDate = getISODateNextWeek(e);
     // send it to openTable
-    this.props.handleClick(longDate);
+    props.handleClick(longDate);
   };
 
   const getISODateNextWeek = (e) => {

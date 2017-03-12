@@ -1,7 +1,7 @@
 var axios = require('axios');
 
 module.exports.get = function (event, context, callback) {
-  var rid = event.queryStringParameters.rid;
+  var rid = event.pathParameters.rid;
 
   axios({
     url: 'https://platform.opentable.com/sync/listings/' + rid,
@@ -13,6 +13,9 @@ module.exports.get = function (event, context, callback) {
     .then((data) => {
       callback(null, {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
         body: JSON.stringify(data.data.items[0]),
       });
     })
