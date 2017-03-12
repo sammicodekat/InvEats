@@ -7,12 +7,13 @@ import { googleLogin } from '../store/actions/auth/authActions';
 class LoginForm extends Component {
   loginWithGoogle(e) {
     e.preventDefault();
-    this.props.googleLogin()
+    this.props.googleLogin();
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuth) {
       this.props.router.push('/signup');
+      console.log('isAuth?', this.props);
     }
   }
 
@@ -21,7 +22,7 @@ class LoginForm extends Component {
       <div>
         <div>
           <h1> Login </h1>
-          <button onClick={(e) => this.loginWithGoogle(e)}>
+          <button onClick={e => this.loginWithGoogle(e)}>
             Login with Google
           </button>
         </div>
@@ -30,10 +31,8 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth,
-  };
-};
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
 
 export default connect(mapStateToProps, { googleLogin })(LoginForm);
