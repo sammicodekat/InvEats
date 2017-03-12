@@ -24,7 +24,6 @@ class Signup extends Component {
       schedule: { Monday: { Lunch: false, Dinner: false }, Tuesday: { Lunch: false, Dinner: false }, Wednesday: { Lunch: false, Dinner: false }, Thursday: { Lunch: false, Dinner: false }, Friday: { Lunch: false, Dinner: false } },
       product: { Title: '', Description: '' },
     };
-
     this.submitName = this.submitName.bind(this);
     this.updateNameState = this.updateNameState.bind(this);
     this.nextStep = this.nextStep.bind(this);
@@ -79,6 +78,7 @@ class Signup extends Component {
     this.setState({
       role: newState,
     });
+    this.nextStep();
   }
 
   handleChangeLocation(e) {
@@ -174,7 +174,7 @@ class Signup extends Component {
         display = (<SignUpIndustry clickHandler={this.handleClickIndustry} options={industry} />);
         if(role.Investor==true){
         button=(
-          <Button animated color="green" onClick={this.prevStep}>
+          <Button animated color="green" onClick={this.submit}>
             <Button.Content visible>Submit</Button.Content>
             <Button.Content hidden>
               <Icon name="check" />
@@ -219,7 +219,7 @@ class Signup extends Component {
             <Grid.Column floated="right" width={2}>
               {button}
             </Grid.Column>
-          </Grid.Row>
+      </Grid.Row>
         </Grid>
       </div>
     );
