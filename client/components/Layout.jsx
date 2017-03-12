@@ -49,18 +49,18 @@ class Layout extends Component {
       <div className="container">
         <Navbar toggleVisibility={this.toggleVisibility}/>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='scale down' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <Menu.Item name='home'>
-              <Icon name='home'/>
-              Home
+          <Sidebar as={Menu} animation='scale down' width='thin' visible={visible} icon='labeled' vertical>
+            <Menu.Item name='name'>
+              <Icon name='name' />
+              My name
             </Menu.Item>
-            <Menu.Item name='gamepad'>
-              <Icon name='gamepad'/>
-              Games
+            <Menu.Item name='matches'>
+              <Icon name='users' />
+              My Matches
             </Menu.Item>
-            <Menu.Item name='camera'>
-              <Icon name='camera'/>
-              Channels
+            <Menu.Item name='reservation'>
+              <Icon name='food' />
+              Reservations
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
