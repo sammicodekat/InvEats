@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { googleLogin } from '../store/actions/auth/authActions';
-import { submitInfotoFirebase } from '../store/actions/demo/demoAction';
 import { Grid, Button, Icon, Progress } from 'semantic-ui-react';
+import { savePreferences, getPreferences } from '../store/actions/firebase/firebaseActions';
 import SignUpRole from './SignUpRole';
 import SignUpLocation from './SignUpLocation';
 import SignUpRound from './SignUpRound';
@@ -13,7 +13,7 @@ import SignUpCuisine from './SignUpCuisine';
 import SignUpProduct from './SignUpProduct';
 
 
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export default class Signup extends Component {
       location: '',
       industry: { Healthcare: false, FinTech: false, Consumer: false, 'Digital Media': false, Ecommerce: false, SaaS: false },
       round: { Idea: false, Seed: false, 'Series A': false, 'Series B': false, After: false },
-      range: { '<$100k': false, '$100k-$300k': false, '$300k-$500k': false, '$500k-$1M': false, '>$1M': false },
+      range: { '<100k': false, '100k-300k': false, '300k-500k': false, '500k-1M': false, '>1M': false },
       cuisine: { Mexican: false, Thai: false, American: false, Italian: false, Japanese: false },
       schedule: { Monday: { Lunch: false, Dinner: false }, Tuesday: { Lunch: false, Dinner: false }, Wednesday: { Lunch: false, Dinner: false }, Thursday: { Lunch: false, Dinner: false }, Friday: { Lunch: false, Dinner: false } },
       product: { Title: '', Description: '' },
@@ -59,7 +59,8 @@ export default class Signup extends Component {
   nextStep() {
     const { step } = this.state;
     console.log('nextStep clicked');
-    if (step === 8) {
+    if (step === 8 || (this.state.role.investor && step === 5)) {
+      this.props.savePreferences(this.state);
       // call firbase with this.state
       // re-route
       // return
@@ -218,10 +219,10 @@ export default class Signup extends Component {
     return (
       <div>
         <Grid>
-      <Progress percent={step / 6 * 20} color="blue" progress active>Progress</Progress>
-    </Grid>
+          <Progress percent={step / 6 * 20} color="blue" progress active>Progress</Progress>
+        </Grid>
         <Grid verticalAlign="middle" centered>
-      <Grid.Row>
+          <Grid.Row>
         <Grid.Column floated="left" width={2}>
           <Button animated color="blue" onClick={this.prevStep}>
             <Button.Content visible>Prev</Button.Content>
@@ -240,7 +241,7 @@ export default class Signup extends Component {
           </Button>
         </Grid.Column>
       </Grid.Row>
-    </Grid>
+        </Grid>
       </div>
     );
   }
@@ -249,3 +250,10 @@ export default class Signup extends Component {
 // export default connect(({ demoReducer }) => {
 //   return ({myProp: demoReducer.myProp});
 // }, {submitInfotoFirebase})(Signup);
+
+
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+export default connect(mapStateToProps, { getPreferences, savePreferences })(Signup);

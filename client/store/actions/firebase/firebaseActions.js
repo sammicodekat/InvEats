@@ -5,14 +5,15 @@ import {
   GET_PREFERENCES,
 } from './firebaseActionTypes';
 
-export const savePreferences = (preferences) => (
+export const savePreferences = preferences => (
   (dispatch) => {
+    const role = preferences.role.Investor ? 'Investor' : 'Project Owner';
     const { currentUser } = firebase.auth();
     return firebase.database()
-    .ref(`/users/${currentUser.uid}/preferences/`)
+    .ref(`/users/${currentUser.uid}/${role}`)
     .set(preferences)
     .then(() =>
-      dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences })
+      dispatch({ type: SAVE_PREFERENCES_SUCCESS, preferences }),
     );
   }
 );
