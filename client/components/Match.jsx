@@ -22,12 +22,3 @@ export default class Match extends Component {
     );
   }
 }
-
-      // {/*<div className="ui card">
-      //   <h3 className="match-title">{`${title}`}</h3>
-      //   <h5>Industry: {industries}</h5>
-      //   <h5>Funding Stage: {round}</h5>
-      //   <h5>Funding Range: {range}</h5>
-      //   <p> {description} </p>
-      //   <Button classN="meet-button" label="Meet" clickHandler={clickHandler} />
-      // </div>*/}
