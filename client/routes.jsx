@@ -4,7 +4,6 @@ import Layout from './components/Layout';
 import LoginForm from './components/LoginForm';
 import Signup from './components/signup/Signup';
 import Home from './components/Home';
-import Confirmation from './components/Confirmation'
 import RequireAuth from './components/RequireAuth';
 import PickRestaurant from './components/match/PickRestaurant';
 
@@ -20,6 +19,5 @@ export default (
     {/* <Route path="matches" component={Matches} > */}
     {/* <Route path="time" component={Time} /> */}
     {/* <Route path="location" component={Location} /> */}
-    <Route path="confirmation" component={Confirmation} />
   </Route>
     );
