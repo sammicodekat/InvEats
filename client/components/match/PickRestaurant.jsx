@@ -13,7 +13,6 @@ export class PickRestaurant extends Component {
       loaded: false,
     };
 
-    this.pickADay = this.pickRestaurant.bind(this);
     this.nextResults = this.nextResults.bind(this);
     this.previousResults = this.previousResults.bind(this);
 
