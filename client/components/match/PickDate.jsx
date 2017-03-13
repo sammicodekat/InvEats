@@ -14,10 +14,6 @@ export class PickDate extends Component {
 
   }
 
-  pickADay(e) {
-    //handle date pick
-  }
-
   render() {
     const { dates } = this.state;
 
