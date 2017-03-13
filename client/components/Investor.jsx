@@ -69,7 +69,7 @@ class Investor extends Component {
     // ];
     return (
       <div style={{ margin: '2%' }}>
-        <Card.Group>
+        <Card.Group style={{ display: 'flex', justifyContent: 'center' }}>
           {this.state.page === 'match' ?
             matches.length ?
               matches.map(match => (
@@ -84,7 +84,7 @@ class Investor extends Component {
               ) : <div>No matches found</div> :
             this.state.page === 'pick' ?
               <PickRestaurant />
-            : <div>
+            : <div style={{ display: 'inline-block' }}>
               <SignUpAvailability handleClick={this.moveToPickPage} />
               <Button label="Back" clickHandler={this.handleBackClick} />
             </div>
