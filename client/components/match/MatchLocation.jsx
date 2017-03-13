@@ -68,6 +68,8 @@ class MatchLocation extends React.Component {
       <section className="map-container">
         <div className="gMap" ref="map" style={this.state.mapStyle}></div>
         <MatchList restData={this.props.listings} />
+        <button onClick={this.props.nextResults}>Next 5</button>
+        <button onClick={this.props.previousResults}>Previous 5</button>
       </section>
     );
   }

@@ -26,19 +26,19 @@ export class PickRestaurant extends Component {
 
   nextResults() {
     if ((this.state.index - 5) < this.props.listings.length) {
+      this.props.getListingDetailForSubset(this.state.index + 5, this.state.index + 10, this.props.listings);
       this.setState({
         index: this.state.index + 5,
       });
-      this.props.getListingDetailForSubset(this.state.index, this.state.index + 5);
     }
   }
 
   previousResults() {
     if ((this.state.index) > 0) {
+      this.props.getListingDetailForSubset(this.state.index - 5, this.state.index, this.props.listings);
       this.setState({
         index: this.state.index - 5,
       });
-      this.props.getListingDetailForSubset(this.state.index, this.state.index + 5);
     }
   }
 
@@ -50,14 +50,12 @@ export class PickRestaurant extends Component {
     if(this.props.loading) {
       display = (<div>Loading...</div>);
     } else {
-      display = (<MatchLocation location={this.props.location} listings={subset} />);
+      display = (<MatchLocation location={this.props.location} listings={subset} nextResults={this.nextResults} previousResults={this.previousResults} />);
     }
 
     return (
       <div>
         {display}
-        <button onClick={this.nextResults}>Next 5</button>
-        <button onClick={this.previousResults}>Previous 5</button>
       </div>
     );
   }
