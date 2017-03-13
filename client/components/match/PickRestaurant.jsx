@@ -20,10 +20,6 @@ export class PickRestaurant extends Component {
     this.props.getListings('2017-03-15T20:00', this.props.location || 'San Francisco');
   }
 
-  pickRestaurant(e) {
-    //handle selection
-  }
-
   nextResults() {
     if ((this.state.index - 5) < this.props.listings.length) {
       this.props.getListingDetailForSubset(this.state.index + 5, this.state.index + 10, this.props.listings);
