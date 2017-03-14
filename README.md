@@ -1,16 +1,20 @@
-# Inveats
-Startups meet investors
+# [Inveats.com](https://www.google.com)
+
+#### Startup meet investor
 
 ![inveats](http://i.imgur.com/gKACI7k.png "inveats.com")
 
 ### What our app does
-Allows startups and investors make a connection over a meal. Users sign up inputting pairing metrics that are later used to make a match. Investors can then select startups to take out for lunch or dinner using OpenTable API.
+Allows startups and investors make a connection over a meal. Users sign-up inputting pairing metrics that are later used to make a match. Investors can then select startups to take out for lunch or dinner using OpenTable API.
 
 ### How we built it
-We used Netlify.com to send our React / Redux static files to the client. Serverless.com framework to deploy our applications as independent lambda functions to AWS. OpenTable to make our lambda API calls for restaurant search and booking.
+We used Netlify.com to send our React / Redux static files to the client. Serverless.com framework to deploy our independent Lambda functions to AWS. OpenTable.com to make our Lambda API calls for restaurant search and booking.
 
 ## Reactathon 2017 Top 7 finalist
-We built this application as a part of a two day hackathon for Reactathon.com at Github HQ
+We built this application as a part Reactathon.com two day hackathon at Github HQ.
+![inveats](http://i.imgur.com/xiXyUXV.jpg")
+
+#### [Watch our interview ](https://youtu.be/B-QZrLoA2aQ?t=35m26s)
 
 
 ## Hackathon Team
