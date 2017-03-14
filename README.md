@@ -1,4 +1,4 @@
-# [Inveats.com](https://www.google.com)
+# [Inveats.com](http://www.inveats.com)
 
 #### Startup meet investor
 
