@@ -63,7 +63,6 @@ class MatchLocation extends React.Component {
     return this;
   }
   render() {
-    console.log('kjhhjhjkhkjhkjh')
     return (
       <section className="map-container">
         <div className="gMap" ref="map" style={this.state.mapStyle}></div>

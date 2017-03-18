@@ -49,7 +49,7 @@ export class PickRestaurant extends Component {
     }
 
     return (
-      <div>
+      <div className="listings">
         {display}
       </div>
     );
